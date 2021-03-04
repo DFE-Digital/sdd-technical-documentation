@@ -1,0 +1,1162 @@
+swagger: "2.0"
+info:
+  description: "TRAMS Datastore API document"
+  version: "1.0.0"
+  title: "TRAMS Datastore API"
+  termsOfService: "TBD"
+  contact:
+    email: "TBD@tbd.com"
+  # license:
+  #   name: "Apache 2.0"
+  #   url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "tbd.swagger.io"
+basePath: "/v1"
+tags:
+- name: "Academy"
+  description: "Information about establishments"
+- name: "Trust"
+  description: "Information about Trusts and Multi-Academy Trusts"
+- name: "Academy Transfer Project"
+  description: "Information about academy transfer projects - a project represents any application to transfer academies between trusts in the system"
+- name: "Academy Transfer Application"
+  description: "Information about academy transfer applications - an application represents any application to transfer academies submitted by external users"
+- name: "Apply to Become Project"
+  description: "Information about application to become and academy projects - a project represents any application to become an academy in the system"
+- name: "Apply to Become Application"
+  description: "Information about application to become and academy applications - an application is submitted by external users"
+- name: "Projects"
+  description: "Generic routes for searching across project types"
+- name: "Sponsors"
+  description: "Information about Sponsors"
+schemes:
+- "https"
+paths:
+  /trust/{urn}:
+    get:
+      tags:
+      - "Trust"
+      summary: "Get information about a trust by URN"
+      description: ""
+      operationId: "getTrust"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Trust to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Trust not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Trust"
+      security:
+      - ApiKeyAuth: []
+  /trusts:
+    get:
+      tags:
+      - "Trust"
+      summary: "Search for trusts by matching fields in the body"
+      description: ""
+      operationId: "searchTrusts"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Search trusts using optional fields"
+        required: true
+        schema:
+          $ref: "#/definitions/SearchTrustsRequest"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TrustListItem"
+      security:
+      - ApiKeyAuth: []
+  /academy/{urn}:
+    get:
+      tags:
+      - "Academy"
+      summary: "Get academy by URN"
+      description: ""
+      operationId: "getAcademy"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Academy to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Academy not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Academy"
+      security:
+      - ApiKeyAuth: []
+  /academies:
+    get:
+      tags:
+      - "Academy"
+      summary: "Search for academies by matching fields in the body"
+      description: ""
+      operationId: "searchAcademies"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Search trusts using optional fields"
+        required: true
+        schema:
+          $ref: "#/definitions/SearchTrustsRequest"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AcademyListItem"
+      security:
+      - ApiKeyAuth: []
+  /academyTransferProject/{urn}:
+    get:
+      tags:
+      - "Academy Transfer Project"
+      summary: "Get project by URN"
+      description: ""
+      operationId: "getProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Project to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Project not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AcademyTransferProject"
+      security:
+      - ApiKeyAuth: []
+    patch:
+      tags:
+      - "Academy Transfer Project"
+      summary: "Update a given Project by URN"
+      description: ""
+      operationId: "patchProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Project to return"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "body"
+        description: "Object containing fields to patch project object with"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateAcademyTransferProjectRequest"
+      responses:
+        "404":
+          description: "Project not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AcademyTransferProject"
+      security:
+      - ApiKeyAuth: []
+  /academyTransferProject:
+    post:
+      tags:
+      - "Academy Transfer Project"
+      summary: "Create a new project"
+      description: ""
+      operationId: "createProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create a new project"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateAcademyTransferProjectRequest"
+      responses:
+        "401":
+          description: "Bad request"
+        "201":
+          description: "successfully created"
+          schema:
+            $ref: "#/definitions/AcademyTransferProject"
+      security:
+      - ApiKeyAuth: []
+  /applyToBecomeProject/{urn}:
+    get:
+      tags:
+      - "Apply to Become Project"
+      summary: "Get project by URN"
+      description: ""
+      operationId: "getA2BProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Project to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Project not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApplyToBecomeProject"
+      security:
+      - ApiKeyAuth: []
+    patch:
+      tags:
+      - "Apply to Become Project"
+      summary: "Update a given Project by URN"
+      description: ""
+      operationId: "patchA2BProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Project to return"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "body"
+        description: "Object containing fields to patch project object with"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateApplyToBecomeProject"
+      responses:
+        "404":
+          description: "Project not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApplyToBecomeProject"
+      security:
+      - ApiKeyAuth: []
+  /applyToBecomeProject:
+    post:
+      tags:
+      - "Apply to Become Project"
+      summary: "Create a new project"
+      description: ""
+      operationId: "createA2BProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create a new project"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateApplyToBecomeProjectRequest"
+      responses:
+        "401":
+          description: "Bad request"
+        "201":
+          description: "successfully created"
+          schema:
+            $ref: "#/definitions/ApplyToBecomeProject"
+      security:
+      - ApiKeyAuth: []
+  /projects:
+    get:
+      tags:
+      - "Projects"
+      summary: "Search projects by matching fields in the body"
+      description: ""
+      operationId: "searchProjects"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Search projects"
+        required: true
+        schema:
+          $ref: "#/definitions/SearchProjectsRequest"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProjectListItem"
+      security:
+      - ApiKeyAuth: []
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: X-API-Key
+definitions:
+  SearchTrustsRequest:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+      name:
+        type: "string"
+  CreateAcademyTransferProjectRequest:
+    type: "object"
+    properties:
+      fields_to_create:
+        $ref: "#/definitions/Placeholder"
+  CreateApplyToBecomeProjectRequest:
+    type: "object"
+    properties:
+      fields_to_create:
+        $ref: "#/definitions/Placeholder"
+  UpdateAcademyTransferProjectRequest:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+      fields_to_update:
+        $ref: "#/definitions/Placeholder"
+  UpdateApplyToBecomeProject:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+      fields_to_update:
+        $ref: "#/definitions/Placeholder"
+  SearchProjectsRequest:
+    type: "object"
+    properties:
+      type:
+        type: "string"
+        enum:
+        - "Application to become"
+        - "Application to transfer"
+        - "Application for significant change"
+      fields_to-search_on:
+        $ref: "#/definitions/Placeholder"
+  Trust:
+    description: "Full view of a trust including academies"
+    type: "object"
+    properties:
+      ifd_data:
+        $ref: "#/definitions/TrustIFDData"
+      gias_data:
+        $ref: "#/definitions/TrustGIASData"
+      academies:
+        type: "array"
+        items:
+          $ref: "#/definitions/Academy"
+  TrustIFDData:
+    description: "Data about a Trust from IFD"
+    properties:
+      trust_open_date:
+        type: "string"
+      lead_RSC_region:
+        type: "string"
+      trust_contact_phone_number:
+        type: "string"
+      performance_and_risk_date_of_meeting:
+        type: "string"
+      prioritised_area_of_review:
+        type: "string"
+      current_single_list_grouping:
+        type: "string"
+      date_of_grouping_decision:
+        type: "string"
+      date_entered_onto_single_list:
+        type: "string"
+      trust_review_writeup:
+        type: "string"
+      date_of_trust_review_meeting:
+        type: "string"
+      followup_letter_sent:
+        type: "string"
+      date_action_planned_for:
+        type: "string"
+      WIP_summary_goes_to_minister:
+        type: "string"
+      external_governance_review_date:
+        type: "string"
+      efficiency_ICF_preview_completed:
+        type: "string"
+      efficiency_ICF_preview_other:
+        type: "string"
+      link_to_workplace_for_efficiency_ICF_review:
+        type: "string"
+      number_in_trust:
+        type: "string"
+  TrustGIASData:
+    description: "Data about a Trust from GIAS"
+    properties:
+      group_id:
+        type: "string"
+      group_name:
+        type: "string"
+      companies_house_number:
+        type: "string"
+      group_contact_address:
+        $ref: "#/definitions/Address"
+      ukprn:
+        type: "string"
+  Address:
+    description: "Generic object for representing address information"
+    properties:
+      street:
+        type: "string"
+      locality:
+        type: "string"
+      additional_line:
+        type: "string"
+      town:
+        type: "string"
+      county:
+        type: "string"
+      postcode:
+        type: "string"
+    required:
+      - street
+      - locality
+      - town
+      - county
+      - postcode
+  TrustListItem:
+    description: "Partial information about a trust suitable for a paginated list"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a Trust"
+      group_name:
+        type: "string"
+        description: "Given name trust group is referenced by"
+      companies_house_number:
+        type: "string"
+        description: "FIXME"
+      academies:
+        type: "array"
+        items:
+          $ref: "#/definitions/AcademyListItem"
+  Academy:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for an Academy"
+      local_authority_code:
+        type: "string"
+        description: ""
+      local_authority_name:
+        type: "string"
+        description: ""
+      establishment_number:
+        type: "string"
+        description: ""
+      establishment_name:
+        type: "string"
+        description: ""
+      establishment_type:
+        $ref: "#/definitions/NameAndCode"
+      establishment_type_group_code:
+        type: "string"
+        description: ""
+      establishment_status:
+        $ref: "#/definitions/NameAndCode"
+      reason_establishment_opened:
+        $ref: "#/definitions/NameAndCode"
+      open_date:
+        type: "string"
+        description: ""
+      reason_establishment_closed:
+        $ref: "#/definitions/NameAndCode"
+      close_date:
+        type: "string"
+        description: ""
+      phase_of_education:
+        $ref: "#/definitions/NameAndCode"
+      statutory_low_age:
+        type: "string"
+        description: ""
+      statutory_high_age:
+        type: "string"
+        description: ""
+      boarders:
+        $ref: "#/definitions/NameAndCode"
+      nursery_provision:
+        type: "string"
+        description: ""
+      official_sixth_form:
+        $ref: "#/definitions/NameAndCode"
+      gender:
+        $ref: "#/definitions/NameAndCode"
+      religious_character:
+        $ref: "#/definitions/NameAndCode"
+      religious_ethos:
+        type: "string"
+        description: ""
+      diocese:
+        $ref: "#/definitions/NameAndCode"
+      admissions_policy:
+        $ref: "#/definitions/NameAndCode"
+      school_capacity:
+        type: "string"
+        description: ""
+      special_classes:
+        $ref: "#/definitions/NameAndCode"
+      census:
+        $ref: "#/definitions/Census"
+      trust_school_flag:
+        $ref: "#/definitions/NameAndCode"
+      trusts:
+        $ref: "#/definitions/NameAndCode"
+      school_sponsor_flag:
+        type: "string"
+        description: ""
+      school_sponsors:
+        type: "string"
+        description: ""
+      federation_flag:
+        type: "string"
+        description: ""
+      federations:
+        $ref: "#/definitions/NameAndCode"
+      ukprn:
+        type: "string"
+        description: ""
+      fehei_identifier:
+        type: "string"
+        description: ""
+      further_education_type:
+        type: "string"
+        description: ""
+      ofsted_last_inspection:
+        type: "string"
+        description: ""
+      ofsted_special_measures:
+        $ref: "#/definitions/NameAndCode"
+      last_changed_date:
+        type: "string"
+        description: ""
+      address:
+        $ref: "#/definitions/Address"
+      school_website:
+        type: "string"
+        description: ""
+      telephone_number:
+        type: "string"
+        description: ""
+      headteacher_title:
+        type: "string"
+        description: ""
+      headteacher_first_name:
+        type: "string"
+        description: ""
+      headteacher_last_name:
+        type: "string"
+        description: ""
+      headteacher_preferred_job_title:
+        type: "string"
+        description: ""
+      inspectorate:
+        type: "string"
+        description: ""
+      inspectorate_name:
+        type: "string"
+        description: ""
+      inspectorate_report:
+        type: "string"
+        description: ""
+      date_of_last_inspection_visit:
+        type: "string"
+        description: ""
+      date_of_next_inspection_visit:
+        type: "string"
+        description: ""
+      teen_moth:
+        type: "string"
+        description: ""
+      teen_moth_places:
+        type: "string"
+        description: ""
+      CCF:
+        type: "string"
+        description: ""      
+      SENPRU:
+        type: "string"
+        description: ""
+      EBD:
+        type: "string"
+        description: ""
+      places_PRU:
+        type: "string"
+        description: ""
+      FTProv:
+        type: "string"
+        description: ""
+      ed_by_other:
+        type: "string"
+        description: ""
+      section_14_approved:
+        type: "string"
+        description: ""
+      SEN1:
+        type: "string"
+        description: ""
+      SEN2:
+        type: "string"
+        description: ""
+      SEN3:
+        type: "string"
+        description: ""
+      SEN4:
+        type: "string"
+        description: ""
+      SEN5:
+        type: "string"
+        description: ""
+      SEN6:
+        type: "string"
+        description: ""
+      SEN7:
+        type: "string"
+        description: ""
+      SEN8:
+        type: "string"
+        description: ""
+      SEN9:
+        type: "string"
+        description: ""
+      SEN10:
+        type: "string"
+        description: ""
+      SEN11:
+        type: "string"
+        description: ""
+      SEN12:
+        type: "string"
+        description: ""
+      SEN13:
+        type: "string"
+        description: ""
+      type_of_resourced_provision:
+        type: "string"
+        description: ""
+      resourced_provision_on_roll:
+        type: "string"
+        description: ""
+      resourced_provision_on_capacity:
+        type: "string"
+        description: ""
+      sen_unit_on_roll:
+        type: "string"
+        description: ""
+      sen_unit_capacity:
+        type: "string"
+        description: ""
+      GOR:
+        $ref: "#/definitions/NameAndCode"
+      district_administrative:
+        $ref: "#/definitions/NameAndCode"
+      administrative_ward:
+        $ref: "#/definitions/NameAndCode"
+      parliamentary_constituency:
+        $ref: "#/definitions/NameAndCode"
+      urban_rural:
+        $ref: "#/definitions/NameAndCode"
+      GSSLA_code:
+        type: "string"
+        description: ""
+      easting:
+        type: "string"
+        description: ""
+      northing:
+        type: "string"
+        description: ""
+      census_area_statistic_ward:
+        type: "string"
+        description: ""
+      MSOA:
+        $ref: "#/definitions/NameAndCode"
+      LSOA:
+        $ref: "#/definitions/NameAndCode"
+      SENStat:
+        type: "string"
+        description: ""
+      SENNoStat:
+        type: "string"
+        description: ""
+      boarding_establishment:
+        type: "string"
+        description: ""
+      props_name:
+        type: "string"
+        description: ""
+      previous_local_authority:
+        $ref: "#/definitions/NameAndCode"
+      previous_establishment_number:
+        type: "string"
+        description: ""
+      ofsted_rating:
+        type: "string"
+        description: ""
+      RSC_region:
+        type: "string"
+        description: ""
+      country:
+        type: "string"
+        description: ""
+      UPRN:
+        type: "string"
+        description: ""
+      MIS_establishment:
+        $ref: "#/definitions/MISEstablishment"
+      MIS_further_education_establishment:
+        $ref: "#/definitions/MISFEA"
+      SMART_data:
+        $ref: "#/definitions/SMARTData"
+      financial:
+        $ref: "#/definitions/Placeholder"
+      concerns:
+        $ref: "#/definitions/Placeholder"
+  AcademyListItem:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for an Academy"
+      name:
+        type: "string"
+  AcademyTransferProject:
+    description: "Full view of a project"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a project"
+      details:
+        $ref: "#/definitions/Placeholder"
+  ApplyToBecomeProject:
+    description: "Full view of a project"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a project"
+      details:
+        $ref: "#/definitions/Placeholder"
+  ProjectListItem:
+    description: "Partial information about a project suitable for a paginated list"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a project"
+      type:
+        type: "string"
+        enum:
+        - "Application to become"
+        - "Application to transfer"
+        - "Application for significant change"
+  Placeholder:
+    description: "Placeholder object for data TBC"
+  NameAndCode:
+    description: "Object used to group data in a common pattern - the name and code for a particular data point"
+    properties:
+      name:
+        type: "string"
+      code:
+        type: "string"
+  Provider:
+    description: ""
+    properties:
+      URN:
+        type: "string"
+      UKPRN:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+      group:
+        type: "string"
+  SMARTData:
+    description: ""
+    properties:
+      probability_of_declining:
+        type: "string"
+      probability_of_staying_the_same:
+        type: "string"
+      probability_of_improving:
+        type: "string"
+      predicted_change_in_progress_8_score:
+        type: "string"
+      predicted_chance_of_change_occurring:
+        type: "string"
+      total_number_of_risks:
+        type: "string"
+      total_risk_score:
+        type: "string"
+      risk_rating_num:
+        type: "string"
+  MISEstablishment:
+    description: "Education Establishment information from MIS"
+    properties:
+      site_name:
+        type: "string"
+        description: ""
+      web_link:
+        type: "string"
+        description: ""
+      LAESTAB:
+        type: "string"
+        description: ""
+      school_name:
+        type: "string"
+        description: ""
+      ofsted_phase:
+        type: "string"
+        description: ""
+      type_of_education:
+        type: "string"
+        description: ""
+      school_open_date:
+        type: "string"
+        description: ""
+      sixth_form:
+        type: "string"
+        description: ""
+      designated_religious_character:
+        type: "string"
+        description: ""
+      religious_ethos:
+        type: "string"
+        description: ""
+      faith_grouping:
+        type: "string"
+        description: ""
+      ofsted_region:
+        type: "string"
+        description: ""
+      region:
+        type: "string"
+        description: ""
+      local_authority:
+        type: "string"
+        description: ""
+      parliamentary_constituency:
+        type: "string"
+        description: ""
+      postcode:
+        type: "string"
+        description: ""
+      income_deprivation_affecting_children_index_quintile:
+        type: "string"
+        description: ""
+      total_number_of_pupils:
+        type: "string"
+        description: ""
+      latest_section_8_inspection_number_since_last_full_inspection:
+        type: "string"
+        description: ""
+      section_8_inspection_related_to_curren_school_urn:
+        type: "string"
+        description: ""
+      urn_at_time_of_section_8_inspection:
+        type: "string"
+        description: ""
+      LAESTAB_at_time_of_section_8_inspection:
+        type: "string"
+        description: ""
+      school_name_at_time_of_section_8_inspection:
+        type: "string"
+        description: ""
+      school_type_at_time_of_section_8_inspection:
+        type: "string"
+        description: ""
+      number_of_section_8_inspections_since_last_full_inspection:
+        type: "string"
+        description: ""
+      number_of_other_section_8_inspections_since_last_full_inspection:
+        type: "string"
+        description: ""
+      date_of_latest_section_8_inspection:
+        type: "string"
+        description: ""
+      section_8_inspection_publication_date:
+        type: "string"
+        description: ""
+      latest_section_8_inspection_converted_to_full_inspection:
+        type: "string"
+        description: ""
+      section_8_inspection_overall_outcome:
+        type: "string"
+        description: ""
+      inspection_number_of_latest_full_inspection:
+        type: "string"
+        description: ""
+      inspection_type:
+        type: "string"
+        description: ""
+      inspection_type_grouping:
+        type: "string"
+        description: ""
+      event_type_grouping:
+        type: "string"
+        description: ""
+      inspection_start_date:
+        type: "string"
+        description: ""
+      inspection_end_date:
+        type: "string"
+        description: ""
+      publication_date:
+        type: "string"
+        description: ""
+      latest_full_inspection_relates_to_current_school_urn:
+        type: "string"
+        description: ""
+      school_urn_at_time_of_last_full_inspection:
+        type: "string"
+        description: ""
+      LAESTAB_at_time_of_last_full_inspection:
+        type: "string"
+        description: ""
+      school_name_at_time_of_last_full_inspection:
+        type: "string"
+        description: ""
+      school_type_at_time_of_last_full_inspection:
+        type: "string"
+        description: ""
+      overall_effectiveness:
+        type: "string"
+        description: ""
+      category_of_concern:
+        type: "string"
+        description: ""
+      quality_of_education:
+        type: "string"
+        description: ""
+      behaviour_and_attitudes:
+        type: "string"
+        description: ""
+      personal_development:
+        type: "string"
+        description: ""
+      effectiveness_of_leadership_and_management:
+        type: "string"
+        description: ""
+      safeguarding_is_effective:
+        type: "string"
+        description: ""
+      early_years_provision:
+        type: "string"
+        description: ""
+      sixth_form_provision:
+        type: "string"
+        description: ""
+      previous_full_inspection_number:
+        type: "string"
+        description: ""
+      previous_inspection_start_date:
+        type: "string"
+        description: ""
+      previous_inspection_end_date:
+        type: "string"
+        description: ""
+      previous_publication_date:
+        type: "string"
+        description: ""
+      previous_full_inspection_relates_to_urn_of_current_school:
+        type: "string"
+        description: ""
+      urn_at_the_time_of_previous_full_inspection:
+        type: "string"
+        description: ""
+      LAESTAB_at_the_time_of_previous_full_inspection:
+        type: "string"
+        description: ""
+      school_name_at_the_time_of_previous_full_inspection:
+        type: "string"
+        description: ""
+      school_type_at_the_time_of_previous_full_inspection:
+        type: "string"
+        description: ""
+      previous_full_inspection_overall_effectiveness:
+        type: "string"
+        description: ""
+      previous_category_of_concern:
+        type: "string"
+        description: ""
+      previous_quality_of_education:
+        type: "string"
+        description: ""
+      previous_behaviour_and_attitudes:
+        type: "string"
+        description: ""
+      previous_personal_development:
+        type: "string"
+        description: ""
+      previous_effectiveness_of_leadership_and_management:
+        type: "string"
+        description: ""
+      previous_is_safeguarding_effective:
+        type: "string"
+        description: ""
+      previous_early_years_provision:
+        type: "string"
+        description: ""
+      previous_sixth_form_provision:
+        type: "string"
+        description: ""
+  MISFEA:
+    description: "Further Education Establishment information from MIS"
+    properties:
+      provider:
+        $ref: "#/definitions/Provider"
+      local_authority:
+        type: "string"
+        description: ""
+      region:
+        type: "string"
+        description: ""
+      ofsted_region:
+        type: "string"
+        description: ""
+      date_of_latest_short_inspection:
+        type: "string"
+        description: ""
+      number_of_short_inspections_since_last_full_inspection_RAW:
+        type: "string"
+        description: ""
+      number_of_short_inspections_since_last_full_inspection:
+        type: "string"
+        description: ""
+      inspection_number:
+        type: "string"
+        description: ""
+      inspection_type:
+        type: "string"
+        description: ""
+      first_day_of_inspection:
+        type: "string"
+        description: ""
+      last_day_of_inspection:
+        type: "string"
+        description: ""
+      date_published:
+        type: "string"
+        description: ""
+      overall_effectiveness_RAW:
+        type: "string"
+        description: ""
+      overall_effectiveness:
+        type: "string"
+        description: ""
+      quality_of_education_RAW:
+        type: "string"
+        description: ""
+      quality_of_education:
+        type: "string"
+        description: ""
+      behaviour_and_attitudes_RAW:
+        type: "string"
+        description: ""
+      behaviour_and_attitudes:
+        type: "string"
+        description: ""
+      personal_development_RAW:
+        type: "string"
+        description: ""
+      personal_development:
+        type: "string"
+        description: ""
+      effectiveness_of_leadership_and_management_RAW:
+        type: "string"
+        description: ""
+      effectiveness_of_leadership_and_management:
+        type: "string"
+        description: ""
+      is_safeguarding_effective:
+        type: "string"
+        description: ""
+      previous_inspection_number:
+        type: "string"
+        description: ""
+      # this key is repeated 3 times in MIS/TRAMS, unsure of reason
+      previous_last_day_of_inspection:
+        type: "string"
+        description: ""
+      previous_overall_effectiveness_RAW:
+        type: "string"
+        description: ""
+      previous_overall_effectiveness:
+        type: "string"
+        description: ""
+  Census:
+    description: "Census data for an establishment"
+    properties:
+      census_date:
+        type: "string"
+        description: ""
+      number_of_pupils:
+        type: "string"
+        description: ""
+      number_of_boys:
+        type: "string"
+        description: ""
+      number_of_girls:
+        type: "string"
+        description: ""
+      percentage_fsm:
+        type: "string"
+        description: ""
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
