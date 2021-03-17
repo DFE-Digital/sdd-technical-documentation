@@ -68,8 +68,16 @@ paths:
       - "application/json"
       parameters:
       - in: "query"
-        name: "query"
-        description: "Optional string to find trusts with matching name, reference number or companies house number"
+        name: "group_name"
+        description: "Optional string to find trusts with matching name"
+        type: "string"
+      - in: "query"
+        name: "urn"
+        description: "Optional string to find trusts with matching reference number"
+        type: "string"
+      - in: "query"
+        name: "companies_house_number"
+        description: "Optional string to find trusts with matching companies house number"
         type: "string"
       responses:
         "405":
@@ -86,7 +94,7 @@ paths:
     get:
       tags:
       - "Academy"
-      summary: "Get academy by URN"
+      summary: "Get academy by Unique Reference Number (URN)"
       description: ""
       operationId: "getAcademy"
       consumes:
