@@ -120,7 +120,7 @@ paths:
     get:
       tags:
       - "Academy"
-      summary: "Search for academies by matching fields in the body"
+      summary: "Search for academies by matching query parameters"
       description: ""
       operationId: "searchAcademies"
       consumes:
@@ -128,12 +128,14 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Search trusts using optional fields"
-        required: true
-        schema:
-          $ref: "#/definitions/SearchTrustsRequest"
+      - in: "query"
+        name: "urn"
+        description: "Search a using optional academy reference number"
+        type: "string"
+      - in: "query"
+        name: "name"
+        description: "Search a using optional academy name"
+        type: "string"
       responses:
         "405":
           description: "Invalid input"
@@ -346,13 +348,6 @@ securityDefinitions:
     in: header
     name: X-API-Key
 definitions:
-  SearchTrustsRequest:
-    type: "object"
-    properties:
-      urn:
-        type: "string"
-      name:
-        type: "string"
   CreateAcademyTransferProjectRequest:
     type: "object"
     properties:
