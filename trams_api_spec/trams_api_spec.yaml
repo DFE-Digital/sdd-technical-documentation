@@ -59,7 +59,7 @@ paths:
     get:
       tags:
       - "Trust"
-      summary: "Search for trusts by matching fields in the body"
+      summary: "Get trusts with optional query parameter"
       description: ""
       operationId: "searchTrusts"
       consumes:
@@ -67,12 +67,10 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Search trusts using optional fields"
-        required: true
-        schema:
-          $ref: "#/definitions/SearchTrustsRequest"
+      - in: "query"
+        name: "query"
+        description: "Optional string to find trusts with matching name, reference number or companies house number"
+        type: "string"
       responses:
         "405":
           description: "Invalid input"
