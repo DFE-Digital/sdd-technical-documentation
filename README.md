@@ -12,4 +12,4 @@ The TRAMS (Trust and Academy Management System) system acts as a data source for
 
 The document is maintained here as a central contract so systems can develop against a consistent API while it is in development. It's generated and viewable using (Swagger)[swagger.io]
 
-Use `docker run -d -p 80:8080 -v $(pwd):/tmp -e SWAGGER_FILE=/tmp/trams_api_spec.yml swaggerapi/swagger-editor` to run the editor with the trams api spec pre loaded, on localhost:8246
+Use `docker run -d -p 80:8080 -v $(pwd):/tmp -e SWAGGER_FILE=/tmp/trams_api_spec.yaml swaggerapi/swagger-editor` to run the editor with the trams api spec pre loaded, on localhost:80
