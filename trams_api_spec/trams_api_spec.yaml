@@ -778,11 +778,27 @@ definitions:
     description: "Full view of a project"
     type: "object"
     properties:
-      urn:
+      project_urn:
         type: "string"
         description: "Unique reference for a project"
-      details:
-        $ref: "#/definitions/Placeholder"
+      outgoing_trust_urn:
+        type: "string"
+        description: "The unique reference number for the outgoing trust"
+      transferring_academies: 
+        type: "array"
+        items:
+          $ref: "#/definitions/TransferringAcademy"
+  TransferringAcademy:
+    description: "Details of a transferring academy"
+    type: object
+    required: ["outgoing_academy_urn"]
+    properties:
+      outgoing_academy_urn: 
+        type: "string"
+        description: "Unique reference for outgoing academy"
+      incoming_trust_urn:
+        type: "string"
+        description: "Unique reference for incoming trust (optional)"
   ApplyToBecomeProject:
     description: "Full view of a project"
     type: "object"
