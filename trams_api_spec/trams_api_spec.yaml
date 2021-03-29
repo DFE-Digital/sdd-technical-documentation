@@ -349,22 +349,40 @@ securityDefinitions:
     name: X-API-Key
 definitions:
   CreateAcademyTransferProjectRequest:
+    description: "Create a new AT Project"
     type: "object"
     properties:
-      fields_to_create:
-        $ref: "#/definitions/Placeholder"
+      outgoing_trust_urn:
+        type: "string"
+        description: "The unique reference number for the outgoing trust"
+      transferring_academies: 
+        type: "array"
+        items:
+          $ref: "#/definitions/TransferringAcademy"
+      state:
+        type: "string"
+      status:
+        type: "string"
   CreateApplyToBecomeProjectRequest:
     type: "object"
     properties:
       fields_to_create:
         $ref: "#/definitions/Placeholder"
   UpdateAcademyTransferProjectRequest:
+    description: "Update a AT Proejct"
     type: "object"
     properties:
-      urn:
+      outgoing_trust_urn:
         type: "string"
-      fields_to_update:
-        $ref: "#/definitions/Placeholder"
+        description: "The unique reference number for the outgoing trust"
+      transferring_academies: 
+        type: "array"
+        items:
+          $ref: "#/definitions/TransferringAcademy"
+      state:
+        type: "string"
+      status:
+        type: "string"
   UpdateApplyToBecomeProject:
     type: "object"
     properties:
@@ -788,6 +806,10 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/TransferringAcademy"
+      state:
+        type: "string"
+      status:
+        type: "string"
   TransferringAcademy:
     description: "Details of a transferring academy"
     type: object
