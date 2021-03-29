@@ -349,22 +349,40 @@ securityDefinitions:
     name: X-API-Key
 definitions:
   CreateAcademyTransferProjectRequest:
+    description: "Create a new AT Project"
     type: "object"
     properties:
-      fields_to_create:
-        $ref: "#/definitions/Placeholder"
+      outgoing_trust_urn:
+        type: "string"
+        description: "The unique reference number for the outgoing trust"
+      transferring_academies: 
+        type: "array"
+        items:
+          $ref: "#/definitions/TransferringAcademy"
+      state:
+        type: "string"
+      status:
+        type: "string"
   CreateApplyToBecomeProjectRequest:
     type: "object"
     properties:
       fields_to_create:
         $ref: "#/definitions/Placeholder"
   UpdateAcademyTransferProjectRequest:
+    description: "Update a AT Proejct"
     type: "object"
     properties:
-      urn:
+      outgoing_trust_urn:
         type: "string"
-      fields_to_update:
-        $ref: "#/definitions/Placeholder"
+        description: "The unique reference number for the outgoing trust"
+      transferring_academies: 
+        type: "array"
+        items:
+          $ref: "#/definitions/TransferringAcademy"
+      state:
+        type: "string"
+      status:
+        type: "string"
   UpdateApplyToBecomeProject:
     type: "object"
     properties:
@@ -778,11 +796,31 @@ definitions:
     description: "Full view of a project"
     type: "object"
     properties:
-      urn:
+      project_urn:
         type: "string"
         description: "Unique reference for a project"
-      details:
-        $ref: "#/definitions/Placeholder"
+      outgoing_trust_urn:
+        type: "string"
+        description: "The unique reference number for the outgoing trust"
+      transferring_academies: 
+        type: "array"
+        items:
+          $ref: "#/definitions/TransferringAcademy"
+      state:
+        type: "string"
+      status:
+        type: "string"
+  TransferringAcademy:
+    description: "Details of a transferring academy"
+    type: object
+    required: ["outgoing_academy_urn"]
+    properties:
+      outgoing_academy_urn: 
+        type: "string"
+        description: "Unique reference for outgoing academy"
+      incoming_trust_urn:
+        type: "string"
+        description: "Unique reference for incoming trust (optional)"
   ApplyToBecomeProject:
     description: "Full view of a project"
     type: "object"
