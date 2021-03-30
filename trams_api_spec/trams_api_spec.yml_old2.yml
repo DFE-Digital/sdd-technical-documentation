@@ -1,0 +1,857 @@
+swagger: "2.0"
+info:
+  description: "TRAMS Datastore API document"
+  version: "1.0.0"
+  title: "TRAMS Datastore API"
+  termsOfService: "TBD"
+  contact:
+    email: "TBD@tbd.com"
+  # license:
+  #   name: "Apache 2.0"
+  #   url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "tbd.swagger.io"
+basePath: "/v1"
+tags:
+- name: "Academy"
+  description: "Information about establishments"
+- name: "Trust"
+  description: "Information about Trusts and Multi-Academy Trusts"
+- name: "Academy Transfer Project"
+  description: "Information about academy transfer projects - a project represents any application to transfer academies between trusts in the system"
+- name: "Projects"
+  description: "Generic routes for searching across project types"
+schemes:
+- "https"
+paths:
+  /trust/{urn}:
+    get:
+      tags:
+      - "Trust"
+      summary: "Get information about a trust by URN"
+      description: ""
+      operationId: "getTrust"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Trust to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Trust not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Trust"
+      security:
+      - ApiKeyAuth: []
+  /trusts:
+    get:
+      tags:
+      - "Trust"
+      summary: "Search for trusts by matching fields in the body"
+      description: ""
+      operationId: "searchTrusts"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Search trusts using optional fields"
+        required: true
+        schema:
+          $ref: "#/definitions/SearchTrustsRequest"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TrustListItem"
+      security:
+      - ApiKeyAuth: []
+  /academy/{urn}:
+    get:
+      tags:
+      - "Academy"
+      summary: "Get academy by URN"
+      description: ""
+      operationId: "getAcademy"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Academy to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Academy not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Academy"
+      security:
+      - ApiKeyAuth: []
+  /academyTransferProject/{urn}:
+    get:
+      tags:
+      - "Academy Transfer Project"
+      summary: "Get project by URN"
+      description: ""
+      operationId: "getProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Project to return"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Project not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AcademyTransferProject"
+      security:
+      - ApiKeyAuth: []
+    patch:
+      tags:
+      - "Academy Transfer Project"
+      summary: "Update a given Project by URN"
+      description: ""
+      operationId: "patchProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "urn"
+        in: "path"
+        description: "Universal reference of Project to return"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "body"
+        description: "Object containing fields to patch project object with"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateAcademyTransferProjectRequest"
+      responses:
+        "404":
+          description: "Project not found"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AcademyTransferProject"
+      security:
+      - ApiKeyAuth: []
+  /project:
+    post:
+      tags:
+      - "Academy Transfer Project"
+      summary: "Create a new project"
+      description: ""
+      operationId: "createProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create a new project"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateAcademyTransferProjectRequest"
+      responses:
+        "401":
+          description: "Bad request"
+        "201":
+          description: "successfully created"
+          schema:
+            $ref: "#/definitions/AcademyTransferProject"
+      security:
+      - ApiKeyAuth: []
+  /projects:
+    get:
+      tags:
+      - "Projects"
+      summary: "Search projects by matching fields in the body"
+      description: ""
+      operationId: "searchProjects"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Search projects"
+        required: true
+        schema:
+          $ref: "#/definitions/SearchProjectsRequest"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProjectListItem"
+      security:
+      - ApiKeyAuth: []
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: X-API-Key
+definitions:
+  SearchTrustsRequest:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+      name:
+        type: "string"
+  CreateAcademyTransferProjectRequest:
+    type: "object"
+    properties:
+      fields_to_create:
+        $ref: "#/definitions/Placeholder"
+  UpdateAcademyTransferProjectRequest:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+      fields_to_update:
+        $ref: "#/definitions/Placeholder"
+  SearchProjectsRequest:
+    type: "object"
+    properties:
+      type:
+        type: "string"
+        enum:
+        - "Application to become"
+        - "Application to transfer"
+        - "Application for significant change"
+      fields_to-search_on:
+        $ref: "#/definitions/Placeholder"
+  Trust:
+    description: "Full view of a trust including academies"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a Trust"
+      academies:
+        type: "array"
+        items:
+          $ref: "#/definitions/Academy"
+      trust_open_date:
+        type: "string"
+        description: "The date the trust opened"
+      lead_rsc_region:
+        type: "string"
+        description: "FIXME"
+      contact_phone_number:
+        type: "string"
+        description: "Main telephone line for main contact at the trust"
+      group_contact_address:
+        $ref: "#/definitions/Address"
+      group_id:
+        type: "string"
+        description: "Identifier for the trust group"
+      group_name:
+        type: "string"
+        description: "Given name trust group is referenced by"
+      companies_house_number:
+        type: "string"
+        description: "FIXME"
+  Address:
+    description: "Generic object for representing address information"
+    properties:
+      street:
+        type: "string"
+      locality:
+        type: "string"
+      additional_line:
+        type: "string"
+      town:
+        type: "string"
+      county:
+        type: "string"
+      postcode:
+        type: "string"
+    required:
+      - street
+      - locality
+      - town
+      - county
+      - postcode
+  TrustListItem:
+    description: "Partial information about a trust suitable for a paginated list"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a Trust"
+      group_name:
+        type: "string"
+        description: "Given name trust group is referenced by"
+      companies_house_number:
+        type: "string"
+        description: "FIXME"
+      academies:
+        type: "array"
+        items:
+          $ref: "#/definitions/AcademyListItem"
+  Academy:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for an Academy"
+      local_authority_code:
+        type: "string"
+        description: ""
+      local_authority_name:
+        type: "string"
+        description: ""
+      establishment_number:
+        type: "string"
+        description: ""
+      establishment_name:
+        type: "string"
+        description: ""
+      establishment_type_code:
+        type: "string"
+        description: ""
+      establishment_type_name:
+        type: "string"
+        description: ""
+      establishment_type_group_code:
+        type: "string"
+        description: ""
+      establishment_status_code:
+        type: "string"
+        description: ""
+      establishment_status_name:
+        type: "string"
+        description: ""
+[ReasonEstablishmentOpened (code)]
+
+[ReasonEstablishmentOpened (name)]
+
+[OpenDate]
+
+[ReasonEstablishmentClosed (code)]
+
+[ReasonEstablishmentClosed (name)]
+
+[CloseDate]
+
+[PhaseOfEducation (code)]
+
+[PhaseOfEducation (name)]
+
+[StatutoryLowAge]
+
+[StatutoryHighAge]
+
+[Boarders (code)]
+
+[Boarders (name)]
+
+[NurseryProvision (name)]
+
+[OfficialSixthForm (code)]
+
+[OfficialSixthForm (name)]
+
+[Gender (code)]
+
+[Gender (name)]
+
+[ReligiousCharacter (code)]
+
+[ReligiousCharacter (name)]
+
+[ReligiousEthos (name)]
+
+[Diocese (code)]
+
+[Diocese (name)]
+
+[AdmissionsPolicy (code)]
+
+[AdmissionsPolicy (name)]
+
+[SchoolCapacity]
+
+[SpecialClasses (code)]
+
+[SpecialClasses (name)]
+
+[CensusDate]
+
+[NumberOfPupils]
+
+[NumberOfBoys]
+
+[NumberOfGirls]
+
+[PercentageFSM]
+
+[TrustSchoolFlag (code)]
+
+[TrustSchoolFlag (name)]
+
+[Trusts (code)]
+
+[Trusts (name)]
+
+[SchoolSponsorFlag (name)]
+
+[SchoolSponsors (name)]
+
+[FederationFlag (name)]
+
+[Federations (code)]
+
+[Federations (name)]
+
+[UKPRN]
+
+[FEHEIdentifier]
+
+[FurtherEducationType (name)]
+
+[OfstedLastInsp]
+
+[OfstedSpecialMeasures (code)]
+
+[OfstedSpecialMeasures (name)]
+
+[LastChangedDate]
+
+[Street]
+
+[Locality]
+
+[Address3]
+
+[Town]
+
+[County (name)]
+
+[Postcode]
+
+[SchoolWebsite]
+
+[TelephoneNum]
+
+[HeadTitle (name)]
+
+[HeadFirstName]
+
+[HeadLastName]
+
+[HeadPreferredJobTitle]
+
+[InspectorateName (name)]
+
+[InspectorateReport]
+
+[DateOfLastInspectionVisit]
+
+[NextInspectionVisit]
+
+[TeenMoth (name)]
+
+[TeenMothPlaces]
+
+[CCF (name)]
+
+[SENPRU (name)]
+
+[EBD (name)]
+
+[PlacesPRU]
+
+[FTProv (name)]
+
+[EdByOther (name)]
+
+[Section41Approved (name)]
+
+[SEN1 (name)]
+
+[SEN2 (name)]
+
+[SEN3 (name)]
+
+[SEN4 (name)]
+
+[SEN5 (name)]
+
+[SEN6 (name)]
+
+[SEN7 (name)]
+
+[SEN8 (name)]
+
+[SEN9 (name)]
+
+[SEN10 (name)]
+
+[SEN11 (name)]
+
+[SEN12 (name)]
+
+[SEN13 (name)]
+
+[TypeOfResourcedProvision (name)]
+
+[ResourcedProvisionOnRoll]
+
+[ResourcedProvisionCapacity]
+
+[SenUnitOnRoll]
+
+[SenUnitCapacity]
+
+[GOR (code)]
+
+[GOR (name)]
+
+[DistrictAdministrative (code)]
+
+[DistrictAdministrative (name)]
+
+[AdministrativeWard (code)]
+
+[AdministrativeWard (name)]
+
+[ParliamentaryConstituency (code)]
+
+[ParliamentaryConstituency (name)]
+
+[UrbanRural (code)]
+
+[UrbanRural (name)]
+
+[GSSLACode (name)]
+
+[Easting]
+
+[Northing]
+
+[CensusAreaStatisticWard (name)]
+
+[MSOA (name)]
+
+[LSOA (name)]
+
+[Inspectorate (name)]
+
+[SENStat]
+
+[SENNoStat]
+
+[BoardingEstablishment (name)]
+
+[PropsName]
+
+[PreviousLA (code)]
+
+[PreviousLA (name)]
+
+[PreviousEstablishmentNumber]
+
+[OfstedRating (name)]
+
+[RSCRegion (name)]
+
+[Country (name)]
+
+[UPRN]
+
+[SiteName]
+
+[MSOA (code)]
+
+[LSOA (code)]
+
+SK
+
+SK
+
+SK
+
+SK
+
+SK
+
+SK
+
+SK
+
+[Web link]
+
+[URN]
+
+[LAESTAB]
+
+[School name]
+
+[Ofsted phase]
+
+[Type of education]
+
+[School open date]
+
+[Admissions policy]
+
+[Sixth form]
+
+[Designated religious character]
+
+[Religious ethos]
+
+[Faith grouping]
+
+[Ofsted region]
+
+[Region]
+
+[Local authority]
+
+[Parliamentary constituency]
+
+[Postcode]
+
+[The income deprivation affecting children index (IDACI) quintile]
+
+[Total number of pupils]
+
+[Latest section 8 inspection number since last full inspection]
+
+[Does the section 8 inspection relate to the URN of the current school?]
+
+[URN at time of the section 8 inspection]
+
+[LAESTAB at time of the section 8 inspection]
+
+[School name at time of the latest section 8 inspection]
+
+[School type at time of the latest section 8 inspection]
+
+[Number of section 8 inspections since the last full inspection]
+
+[Date of latest section 8 inspection]
+
+[Section 8 inspection publication date]
+
+[Did the latest section 8 inspection convert to a full inspection?]
+
+[Section 8 inspection overall outcome]
+
+[Number of other section 8 inspections since last full inspection]
+
+[Inspection number of latest full inspection]
+
+[Inspection type]
+
+[Inspection type grouping]
+
+[Event type grouping]
+
+[Inspection start date]
+
+[Inspection end date]
+
+[Publication date]
+
+[Does the latest full inspection relate to the URN of the current school?]
+
+[URN at time of latest full inspection]
+
+[LAESTAB at time of latest full inspection]
+
+[School name at time of latest full inspection]
+
+[School type at time of latest full inspection]
+
+[Overall effectiveness]
+
+[Category of concern]
+
+[Quality of education]
+
+[Quality of education]
+
+[Behaviour and attitudes]
+
+[Personal development]
+
+[Effectiveness of leadership and management]
+
+[Safeguarding is effective?]
+
+[Early years provision (where applicable)]
+
+[Sixth form provision (where applicable)]
+
+[Previous full inspection number]
+
+[Previous inspection start date]
+
+[Previous inspection end date]
+
+[Previous publication date]
+
+[Does the previous full inspection relate to the URN of the current school?]
+
+[URN at time of previous full inspection]
+
+[LAESTAB at time of previous full inspection]
+
+[School name at time of previous full inspection]
+
+[School type at time of previous full inspection]
+
+[Previous full inspection overall effectiveness]
+
+[Previous category of concern]
+
+[Previous quality of education]
+
+[Previous behaviour and attitudes]
+
+[Previous personal development]
+
+[Previous effectiveness of leadership and management]
+
+[Previous safeguarding is effective?]
+
+[Previous early years provision (where applicable)]
+
+[Previous behaviour and attitudes]
+
+[Provider URN]
+
+[Provider UKPRN]
+
+[Provider name]
+
+[Provider type]
+
+[Provider group]
+
+[Local authority]
+
+[Region]
+
+[Ofsted region]
+
+[Date of latest short inspection]
+
+[Number of short inspections since last full inspection RAW]
+
+[Number of short inspections since last full inspection]
+
+[Inspection number]
+
+[Inspection type]
+
+[First day of inspection]
+
+[Last day of Inspection]
+
+[Date published]
+
+[Overall effectiveness RAW]
+
+[Overall effectiveness]
+
+[Quality of education RAW]
+
+[Quality of education]
+
+[Behaviour and attitudes RAW]
+
+[Behaviour and attitudes]
+
+[Personal development RAW]
+
+[Personal development]
+
+[Effectiveness of leadership and management RAW]
+
+[Effectiveness of leadership and management]
+
+[Is safeguarding effective?]
+
+[Previous inspection number]
+
+[Previous last day of inspection]
+
+[Previous last day of inspection]
+
+[Previous last day of inspection]
+
+[Previous overall effectiveness RAW]
+
+[Previous overall effectiveness]
+      financial:
+        $ref: "#/definitions/Placeholder"
+      concerns:
+        $ref: "#/definitions/Placeholder"
+  AcademyListItem:
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for an Academy"
+      name:
+        type: "string"
+  AcademyTransferProject:
+    description: "Full view of a project"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a project"
+      details:
+        $ref: "#/definitions/Placeholder"
+  ProjectListItem:
+    description: "Partial information about a project suitable for a paginated list"
+    type: "object"
+    properties:
+      urn:
+        type: "string"
+        description: "Unique reference for a project"
+      type:
+        type: "string"
+        enum:
+        - "Application to become"
+        - "Application to transfer"
+        - "Application for significant change"
+  Placeholder:
+    description: "Placeholder object for data TBC"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
