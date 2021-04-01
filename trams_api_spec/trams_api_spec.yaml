@@ -194,7 +194,7 @@ paths:
         description: "Object containing fields to patch project object with"
         required: true
         schema:
-          $ref: "#/definitions/AcademyTransferProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateAcademyTransferProject"
       responses:
         "404":
           description: "Project not found"
@@ -221,7 +221,7 @@ paths:
         description: "Create a new project"
         required: true
         schema:
-          $ref: "#/definitions/AcademyTransferProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateAcademyTransferProject"
       responses:
         "401":
           description: "Bad request"
@@ -278,7 +278,7 @@ paths:
         description: "Object containing fields to patch project object with"
         required: true
         schema:
-          $ref: "#/definitions/ApplyToBecomeProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateApplyToBecomeProject"
       responses:
         "404":
           description: "Project not found"
@@ -305,7 +305,7 @@ paths:
         description: "Create a new project"
         required: true
         schema:
-          $ref: "#/definitions/ApplyToBecomeProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateApplyToBecomeProject"
       responses:
         "401":
           description: "Bad request"
@@ -348,8 +348,8 @@ securityDefinitions:
     in: header
     name: X-API-Key
 definitions:
-  AcademyTransferProjectRequest:
-    description: "Update a AT Proejct"
+  CreateOrUpdateAcademyTransferProject:
+    description: "Create or update a AT Project"
     type: "object"
     properties:
       outgoing_trust_urn:
@@ -363,7 +363,8 @@ definitions:
         type: "string"
       status:
         type: "string"
-  ApplyToBecomeProjectRequest:
+  CreateOrUpdateApplyToBecomeProject:
+    description: "Create or update a A2B Project"
     type: "object"
     properties:
       urn:
