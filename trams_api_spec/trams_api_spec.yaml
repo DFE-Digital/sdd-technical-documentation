@@ -194,7 +194,7 @@ paths:
         description: "Object containing fields to patch project object with"
         required: true
         schema:
-          $ref: "#/definitions/UpdateAcademyTransferProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateAcademyTransferProject"
       responses:
         "404":
           description: "Project not found"
@@ -221,7 +221,7 @@ paths:
         description: "Create a new project"
         required: true
         schema:
-          $ref: "#/definitions/CreateAcademyTransferProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateAcademyTransferProject"
       responses:
         "401":
           description: "Bad request"
@@ -278,7 +278,7 @@ paths:
         description: "Object containing fields to patch project object with"
         required: true
         schema:
-          $ref: "#/definitions/UpdateApplyToBecomeProject"
+          $ref: "#/definitions/CreateOrUpdateApplyToBecomeProject"
       responses:
         "404":
           description: "Project not found"
@@ -305,7 +305,7 @@ paths:
         description: "Create a new project"
         required: true
         schema:
-          $ref: "#/definitions/CreateApplyToBecomeProjectRequest"
+          $ref: "#/definitions/CreateOrUpdateApplyToBecomeProject"
       responses:
         "401":
           description: "Bad request"
@@ -348,8 +348,8 @@ securityDefinitions:
     in: header
     name: X-API-Key
 definitions:
-  CreateAcademyTransferProjectRequest:
-    description: "Create a new AT Project"
+  CreateOrUpdateAcademyTransferProject:
+    description: "Create or update a AT Project"
     type: "object"
     properties:
       outgoing_trust_urn:
@@ -363,68 +363,8 @@ definitions:
         type: "string"
       status:
         type: "string"
-  CreateApplyToBecomeProjectRequest:
-    type: "object"
-    properties:
-      head_teacher_board_date: 
-        type: string
-        format: date
-        description: The date of the head teacher board.
-      opening_date:
-        type: string
-        format: date
-        description: The opening date for the new academy
-      progress:
-        type: string
-        description: The current progress of the project.
-      recommendation:
-        type: string
-        description: The recommendation for the school.
-      project_author:
-        type: string
-        description: TBD
-      ao_required: 
-        type: boolean
-        description: TBD
-      project_rationale:
-        type: string
-        description: Long text to describe the rationale of school applying to be academy.
-      trust_sponsor_rationale:
-        type: string
-        description: Long text of rationale from trust sponsor.
-      supporting_document:
-        type: string
-        description: TBD (Link to supporting document in sharepoint)
-      date_sent_to_local_authority:
-        type: string
-        format: date
-        description: TBD
-      date_local_authority_returned_template:
-        type: string
-        format: date
-        description: TBD
-      local_authority_info_comments:
-        type: string
-        description: TBD
-      local_authority_info_template:
-        type: string
-        description: TBD (Link to local authority template in sharepoint)
-  UpdateAcademyTransferProjectRequest:
-    description: "Update a AT Proejct"
-    type: "object"
-    properties:
-      outgoing_trust_urn:
-        type: "string"
-        description: "The unique reference number for the outgoing trust"
-      transferring_academies: 
-        type: "array"
-        items:
-          $ref: "#/definitions/TransferringAcademy"
-      state:
-        type: "string"
-      status:
-        type: "string"
-  UpdateApplyToBecomeProject:
+  CreateOrUpdateApplyToBecomeProject:
+    description: "Create or update a A2B Project"
     type: "object"
     properties:
       urn:
