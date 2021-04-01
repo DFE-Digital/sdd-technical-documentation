@@ -366,8 +366,49 @@ definitions:
   CreateApplyToBecomeProjectRequest:
     type: "object"
     properties:
-      fields_to_create:
-        $ref: "#/definitions/Placeholder"
+      head_teacher_board_date: 
+        type: string
+        format: date
+        description: The date of the head teacher board.
+      opening_date:
+        type: string
+        format: date
+        description: The opening date for the new academy
+      progress:
+        type: string
+        description: The current progress of the project.
+      recommendation:
+        type: string
+        description: The recommendation for the school.
+      project_author:
+        type: string
+        description: TBD
+      ao_required: 
+        type: boolean
+        description: TBD
+      project_rationale:
+        type: string
+        description: Long text to describe the rationale of school applying to be academy.
+      trust_sponsor_rationale:
+        type: string
+        description: Long text of rationale from trust sponsor.
+      supporting_document:
+        type: string
+        description: TBD (Link to supporting document in sharepoint)
+      date_sent_to_local_authority:
+        type: string
+        format: date
+        description: TBD
+      date_local_authority_returned_template:
+        type: string
+        format: date
+        description: TBD
+      local_authority_info_comments:
+        type: string
+        description: TBD
+      local_authority_info_template:
+        type: string
+        description: TBD (Link to local authority template in sharepoint)
   UpdateAcademyTransferProjectRequest:
     description: "Update a AT Proejct"
     type: "object"
@@ -388,8 +429,49 @@ definitions:
     properties:
       urn:
         type: "string"
-      fields_to_update:
-        $ref: "#/definitions/Placeholder"
+      head_teacher_board_date: 
+        type: string
+        format: date
+        description: The date of the head teacher board.
+      opening_date:
+        type: string
+        format: date
+        description: The opening date for the new academy
+      progress:
+        type: string
+        description: The current progress of the project.
+      recommendation:
+        type: string
+        description: The recommendation for the school.
+      project_author:
+        type: string
+        description: TBD
+      ao_required: 
+        type: boolean
+        description: TBD
+      project_rationale:
+        type: string
+        description: Long text to describe the rationale of school applying to be academy.
+      trust_sponsor_rationale:
+        type: string
+        description: Long text of rationale from trust sponsor.
+      supporting_document:
+        type: string
+        description: TBD (Link to supporting document in sharepoint)
+      date_sent_to_local_authority:
+        type: string
+        format: date
+        description: TBD
+      date_local_authority_returned_template:
+        type: string
+        format: date
+        description: TBD
+      local_authority_info_comments:
+        type: string
+        description: TBD
+      local_authority_info_template:
+        type: string
+        description: TBD (Link to local authority template in sharepoint)
   SearchProjectsRequest:
     type: "object"
     properties:
@@ -828,6 +910,49 @@ definitions:
       urn:
         type: "string"
         description: "Unique reference for a project"
+      head_teacher_board_date: 
+        type: string
+        format: date
+        description: The date of the head teacher board.
+      opening_date:
+        type: string
+        format: date
+        description: The opening date for the new academy
+      progress:
+        type: string
+        description: The current progress of the project.
+      recommendation:
+        type: string
+        description: The recommendation for the school.
+      project_author:
+        type: string
+        description: TBD
+      ao_required: 
+        type: boolean
+        description: TBD
+      project_rationale:
+        type: string
+        description: Long text to describe the rationale of school applying to be academy.
+      trust_sponsor_rationale:
+        type: string
+        description: Long text of rationale from trust sponsor.
+      supporting_document:
+        type: string
+        description: TBD (Link to supporting document in sharepoint)
+      date_sent_to_local_authority:
+        type: string
+        format: date
+        description: TBD
+      date_local_authority_returned_template:
+        type: string
+        format: date
+        description: TBD
+      local_authority_info_comments:
+        type: string
+        description: TBD
+      local_authority_info_template:
+        type: string
+        description: TBD (Link to local authority template in sharepoint)
       details:
         $ref: "#/definitions/Placeholder"
   ProjectListItem:
