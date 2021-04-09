@@ -21,7 +21,7 @@ In order to maximise the benefits of creating teams this way, we need to organis
 
 Where we mention we 'prefer' to use certain tools or packages, teams are free to deviate if it is deemed necessary, for other tools or stacks we consider this section mandatory.
 
-We develop all new digital services as single repository .NET Core (3.1 LTS) MVC applications, using Razor for templating. .NET Core 5+ is acceptable, but we opt to use the long term supported version if possible.
+We develop all new digital services as single repository .NET Core (latest Long Term Support version) MVC applications, using Razor for templating. Using the latest .NET Core version is acceptable in special circumstances, but prefer the long term supported version if possible.
 We have a number of digital services with low complexity requirements that interact with the same central data store, so a simple and consistent stack allows us to develop to a common standard and eventually pass ownership to a centralised live support team.
 
 We use XUnit for unit and integration tests, we prefer to use Moq for mocking interfaces and Fluent Assertions for chaining assertions (though it is arguably an anti-pattern, we prefer the readability it imparts).
