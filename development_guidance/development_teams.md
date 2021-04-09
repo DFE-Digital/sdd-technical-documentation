@@ -2,6 +2,8 @@
 
 This guide contains various concepts which form a set of expectations we have on how our development teams will operate.
 
+We base our ways of working on the [GDS Code of Practice](https://www.gov.uk/government/publications/technology-code-of-practice/technology-code-of-practice), and the rest of this document covers some extra detail specific to our teams.
+
 ## Full Stack, Vertical Slices
 
 We aim to create teams of full stack developers, rather than creating teams that specialise in disciplines like front end development, testing, devops etc.
