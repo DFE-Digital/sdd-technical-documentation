@@ -828,10 +828,28 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/TransferringAcademy"
+      features:
+        $ref: "#/definitions/AcademyTransferProjectFeatures"
       state:
         type: "string"
       status:
         type: "string"
+  AcademyTransferProjectFeatures:
+    description: "Features of a transfer"
+    type: "object"
+    properties:
+      who_initiated_the_transfer:
+        type: "string"
+        description: "Whether DfE or the outgoing trust initiated the transfer"
+      rdd_or_esfa_intervention:
+        type: "boolean"
+        description: "Whether or not the transfer was started due to intervention by the RDD or ESFA"
+      rdd_or_esfa_intervention_detail:
+        type: "string"
+        description: "Further detail about RDD/ESFA Intervention"
+      type_of_transfer:
+        type: "string"
+        description: "The type of transfer this project is"
   TransferringAcademy:
     description: "Details of a transferring academy"
     type: object
