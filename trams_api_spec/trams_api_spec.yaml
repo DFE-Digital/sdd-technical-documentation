@@ -346,7 +346,7 @@ securityDefinitions:
   ApiKeyAuth:
     type: apiKey
     in: header
-    name: X-API-Key
+    name: ApiKey
 definitions:
   CreateOrUpdateAcademyTransferProject:
     description: "Create or update a AT Project"
