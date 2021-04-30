@@ -347,7 +347,7 @@ securityDefinitions:
     type: apiKey
     in: header
     name: ApiKey
-definitions: 
+definitions:
   CreateOrUpdateAcademyTransferProject:
     description: "Create or update a AT Project"
     type: "object"
