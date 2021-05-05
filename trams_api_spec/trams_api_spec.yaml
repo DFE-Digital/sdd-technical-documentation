@@ -862,40 +862,36 @@ definitions:
         type: "string"
         description: "Unique reference for a project"
       outgoing_trust:
-        type: "object"
-        description: "The outgoing trust for the project"
-        properties: 
-          ukprn:
-            type: "string"
-            description: "The unique reference number for the outgoing trust"
-          name:
-            type: "string"
-            description: "The name of the outgoing trust"
+        $ref: "#/definitions/TrustSummary"
       transferring_academies: 
         type: "array"
         items:
           type: "object"
           properties: 
             outgoing_academy:
-              type: "object"
-              description: "An outgoing academy"
-              properties: 
-                ukprn: 
-                  type: "string"
-                  description: "Unique reference for outgoing academy"
-                name:
-                  type: "string"
-                  description: "The name of the outgoing academy"
+              $ref: "#/definitions/AcademySummary"
             incoming_trust:
-              type: "object"
-              description: "The incoming trust (optional)"
-              properties: 
-                ukprn:
-                  type: "string"
-                  description: "Unique reference for incoming trust"
-                name:
-                  type: "string"
-                  description: "The name of the incoming trust"
+              $ref: "#/definitions/TrustSummary"
+  TrustSummary:
+    description: "Summary of a trust"
+    type: "object"
+    properties: 
+      ukprn:
+        type: "string"
+        description: "The UKPRN for the trust"
+      group_name:
+        type: "string"
+        description: "The name of the trust"
+  AcademySummary: 
+    description: "Summary of an academy"
+    type: "object"
+    properties: 
+      ukprn:
+        type: "string"
+        description: "The UKPRN for the academy"
+      name:
+        type: "string"
+        description: "The name of the academy"
   AcademyTransferProjectFeatures:
     description: "Features of a transfer"
     type: "object"
