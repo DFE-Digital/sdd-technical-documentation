@@ -214,8 +214,6 @@ paths:
       produces:
         - "application/json"
       responses:
-        "401":
-          description: "Bad request"
         "200":
           description: ""
           schema:
