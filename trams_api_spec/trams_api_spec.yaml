@@ -861,29 +861,41 @@ definitions:
       project_urn:
         type: "string"
         description: "Unique reference for a project"
-      outgoing_trust_urn:
-        type: "string"
-        description: "The unique reference number for the outgoing trust"
-      outgoing_trust_name:
-        type: "string"
-        description: "The name of the outgoing trust"
+      outgoing_trust:
+        type: "object"
+        description: "The outgoing trust for the project"
+        properties: 
+          ukprn:
+            type: "string"
+            description: "The unique reference number for the outgoing trust"
+          name:
+            type: "string"
+            description: "The name of the outgoing trust"
       transferring_academies: 
         type: "array"
         items:
           type: "object"
           properties: 
-            outgoing_academy_urn: 
-              type: "string"
-              description: "Unique reference for outgoing academy"
-            outgoing_academy_name:
-              type: "string"
-              description: "The name of the outgoing academy"
-            incoming_trust_urn:
-              type: "string"
-              description: "Unique reference for incoming trust (optional)"
-            incoming_trust_name:
-              type: "string"
-              description: "The name of the incoming trust"
+            outgoing_academy:
+              type: "object"
+              description: "An outgoing academy"
+              properties: 
+                ukprn: 
+                  type: "string"
+                  description: "Unique reference for outgoing academy"
+                name:
+                  type: "string"
+                  description: "The name of the outgoing academy"
+            incoming_trust:
+              type: "object"
+              description: "The incoming trust (optional)"
+              properties: 
+                ukprn:
+                  type: "string"
+                  description: "Unique reference for incoming trust"
+                name:
+                  type: "string"
+                  description: "The name of the incoming trust"
   AcademyTransferProjectFeatures:
     description: "Features of a transfer"
     type: "object"
