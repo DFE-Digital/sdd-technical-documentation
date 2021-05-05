@@ -858,9 +858,6 @@ definitions:
     description: "Listing academy transfer projects"
     type: "object"
     properties: 
-      urn:
-        type: "string"
-        description: "The unique reference number of the project"
       project_urn:
         type: "string"
         description: "Unique reference for a project"
