@@ -204,6 +204,22 @@ paths:
             $ref: "#/definitions/AcademyTransferProject"
       security:
       - ApiKeyAuth: []
+  /academyTransferProjects:
+    get:
+      tags:
+        - "Academy Transfer Project"
+      summary: "List academy transfer projects"
+      description: "List truncated versions of academy transfer projects"
+      operationId: "listAcademyTransferProjects"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: "#/definitions/AcademyTransferProjectSummary"
+      security:
+      - ApiKeyAuth: []
   /academyTransferProject:
     post:
       tags:
@@ -359,6 +375,8 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/TransferringAcademy"
+      features:
+        $ref: "#/definitions/AcademyTransferProjectFeatures"
       state:
         type: "string"
       status:
@@ -834,6 +852,47 @@ definitions:
         type: "string"
       status:
         type: "string"
+  AcademyTransferProjectSummary:
+    description: "Listing academy transfer projects"
+    type: "object"
+    properties: 
+      project_urn:
+        type: "string"
+        description: "Unique reference for a project"
+      outgoing_trust:
+        $ref: "#/definitions/TrustSummary"
+      transferring_academies: 
+        type: "array"
+        items:
+          type: "object"
+          properties: 
+            outgoing_academy:
+              $ref: "#/definitions/AcademySummary"
+            incoming_trust:
+              $ref: "#/definitions/TrustSummary"
+  TrustSummary:
+    description: "Summary of a trust"
+    type: "object"
+    properties: 
+      ukprn:
+        type: "string"
+        description: "The UKPRN for the trust"
+      group_id:
+        type: "string"
+        description: "The group ID for the trust"
+      group_name:
+        type: "string"
+        description: "The name of the trust"
+  AcademySummary: 
+    description: "Summary of an academy"
+    type: "object"
+    properties: 
+      ukprn:
+        type: "string"
+        description: "The UKPRN for the academy"
+      name:
+        type: "string"
+        description: "The name of the academy"
   AcademyTransferProjectFeatures:
     description: "Features of a transfer"
     type: "object"
