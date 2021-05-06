@@ -877,6 +877,9 @@ definitions:
       ukprn:
         type: "string"
         description: "The UKPRN for the trust"
+      group_id:
+        type: "string"
+        description: "The group ID for the trust"
       group_name:
         type: "string"
         description: "The name of the trust"
