@@ -217,7 +217,7 @@ paths:
         "200":
           description: ""
           schema:
-            $ref: "#/definitions/AcademyTransferProjectListItem"
+            $ref: "#/definitions/AcademyTransferProjectSummary"
       security:
       - ApiKeyAuth: []
   /academyTransferProject:
@@ -852,7 +852,7 @@ definitions:
         type: "string"
       status:
         type: "string"
-  AcademyTransferProjectListItem:
+  AcademyTransferProjectSummary:
     description: "Listing academy transfer projects"
     type: "object"
     properties: 
