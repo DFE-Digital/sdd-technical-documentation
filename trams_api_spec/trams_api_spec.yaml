@@ -439,7 +439,7 @@ definitions:
         - "Application to become"
         - "Application to transfer"
         - "Application for significant change"
-      fieldsTo-searchOn:
+      fieldsToSearchOn:
         $ref: "#/definitions/Placeholder"
   Trust:
     description: "Full view of a trust including academies"
