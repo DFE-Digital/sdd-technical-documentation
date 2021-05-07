@@ -68,7 +68,7 @@ paths:
       - "application/json"
       parameters:
       - in: "query"
-        name: "group_name"
+        name: "groupName"
         description: "Optional string to find trusts with matching name"
         type: "string"
       - in: "query"
@@ -76,7 +76,7 @@ paths:
         description: "Optional string to find trusts with matching reference number"
         type: "string"
       - in: "query"
-        name: "companies_house_number"
+        name: "companiesHouseNumber"
         description: "Optional string to find trusts with matching companies house number"
         type: "string"
       responses:
@@ -368,10 +368,10 @@ definitions:
     description: "Create or update a AT Project"
     type: "object"
     properties:
-      outgoing_trust_urn:
+      outgoingTrustUrn:
         type: "string"
         description: "The unique reference number for the outgoing trust"
-      transferring_academies: 
+      transferringAcademies: 
         type: "array"
         items:
           $ref: "#/definitions/TransferringAcademy"
@@ -387,11 +387,11 @@ definitions:
     properties:
       urn:
         type: "string"
-      head_teacher_board_date: 
+      headTeacherBoardDate: 
         type: string
         format: date
         description: The date of the head teacher board.
-      opening_date:
+      openingDate:
         type: string
         format: date
         description: The opening date for the new academy
@@ -401,33 +401,33 @@ definitions:
       recommendation:
         type: string
         description: The recommendation for the school.
-      project_author:
+      projectAuthor:
         type: string
         description: TBD
-      ao_required: 
+      aoRequired: 
         type: boolean
         description: TBD
-      project_rationale:
+      projectRationale:
         type: string
         description: Long text to describe the rationale of school applying to be academy.
-      trust_sponsor_rationale:
+      trustSponsorRationale:
         type: string
         description: Long text of rationale from trust sponsor.
-      supporting_document:
+      supportingDocument:
         type: string
         description: TBD (Link to supporting document in sharepoint)
-      date_sent_to_local_authority:
+      dateSentToLocalAuthority:
         type: string
         format: date
         description: TBD
-      date_local_authority_returned_template:
+      dateLocalAuthorityReturnedTemplate:
         type: string
         format: date
         description: TBD
-      local_authority_info_comments:
+      localAuthorityInfoComments:
         type: string
         description: TBD
-      local_authority_info_template:
+      localAuthorityInfoTemplate:
         type: string
         description: TBD (Link to local authority template in sharepoint)
   SearchProjectsRequest:
@@ -439,15 +439,15 @@ definitions:
         - "Application to become"
         - "Application to transfer"
         - "Application for significant change"
-      fields_to-search_on:
+      fieldsTo-searchOn:
         $ref: "#/definitions/Placeholder"
   Trust:
     description: "Full view of a trust including academies"
     type: "object"
     properties:
-      ifd_data:
+      ifdData:
         $ref: "#/definitions/TrustIFDData"
-      gias_data:
+      giasData:
         $ref: "#/definitions/TrustGIASData"
       academies:
         type: "array"
@@ -456,52 +456,52 @@ definitions:
   TrustIFDData:
     description: "Data about a Trust from IFD"
     properties:
-      trust_open_date:
+      trustOpenDate:
         type: "string"
-      lead_RSC_region:
+      leadRSCRegion:
         type: "string"
-      trust_contact_phone_number:
+      trustContactPhoneNumber:
         type: "string"
-      performance_and_risk_date_of_meeting:
+      performanceAndRiskDateOfMeeting:
         type: "string"
-      prioritised_area_of_review:
+      prioritisedAreaOfReview:
         type: "string"
-      current_single_list_grouping:
+      currentSingleListGrouping:
         type: "string"
-      date_of_grouping_decision:
+      dateOfGroupingDecision:
         type: "string"
-      date_entered_onto_single_list:
+      dateEnteredOntoSingleList:
         type: "string"
-      trust_review_writeup:
+      trustReviewWriteup:
         type: "string"
-      date_of_trust_review_meeting:
+      dateOfTrustReviewMeeting:
         type: "string"
-      followup_letter_sent:
+      followupLetterSent:
         type: "string"
-      date_action_planned_for:
+      dateActionPlannedFor:
         type: "string"
-      WIP_summary_goes_to_minister:
+      WIPSummaryGoesToMinister:
         type: "string"
-      external_governance_review_date:
+      externalGovernanceReviewDate:
         type: "string"
-      efficiency_ICF_preview_completed:
+      efficiencyICFPreviewCompleted:
         type: "string"
-      efficiency_ICF_preview_other:
+      efficiencyICFPreviewOther:
         type: "string"
-      link_to_workplace_for_efficiency_ICF_review:
+      linkToWorkplaceForEfficiencyICFReview:
         type: "string"
-      number_in_trust:
+      numberInTrust:
         type: "string"
   TrustGIASData:
     description: "Data about a Trust from GIAS"
     properties:
-      group_id:
+      groupId:
         type: "string"
-      group_name:
+      groupName:
         type: "string"
-      companies_house_number:
+      companiesHouseNumber:
         type: "string"
-      group_contact_address:
+      groupContactAddress:
         $ref: "#/definitions/Address"
       ukprn:
         type: "string"
@@ -512,7 +512,7 @@ definitions:
         type: "string"
       locality:
         type: "string"
-      additional_line:
+      additionalLine:
         type: "string"
       town:
         type: "string"
@@ -533,10 +533,10 @@ definitions:
       urn:
         type: "string"
         description: "Unique reference for a Trust"
-      group_name:
+      groupName:
         type: "string"
         description: "Given name trust group is referenced by"
-      companies_house_number:
+      companiesHouseNumber:
         type: "string"
         description: "FIXME"
       academies:
@@ -549,79 +549,79 @@ definitions:
       urn:
         type: "string"
         description: "Unique reference for an Academy"
-      local_authority_code:
+      localAuthorityCode:
         type: "string"
         description: ""
-      local_authority_name:
+      localAuthorityName:
         type: "string"
         description: ""
-      establishment_number:
+      establishmentNumber:
         type: "string"
         description: ""
-      establishment_name:
+      establishmentName:
         type: "string"
         description: ""
-      establishment_type:
+      establishmentType:
         $ref: "#/definitions/NameAndCode"
-      establishment_type_group_code:
+      establishmentTypeGroupCode:
         type: "string"
         description: ""
-      establishment_status:
+      establishmentStatus:
         $ref: "#/definitions/NameAndCode"
-      reason_establishment_opened:
+      reasonEstablishmentOpened:
         $ref: "#/definitions/NameAndCode"
-      open_date:
+      openDate:
         type: "string"
         description: ""
-      reason_establishment_closed:
+      reasonEstablishmentClosed:
         $ref: "#/definitions/NameAndCode"
-      close_date:
+      closeDate:
         type: "string"
         description: ""
-      phase_of_education:
+      phaseOfEducation:
         $ref: "#/definitions/NameAndCode"
-      statutory_low_age:
+      statutoryLowAge:
         type: "string"
         description: ""
-      statutory_high_age:
+      statutoryHighAge:
         type: "string"
         description: ""
       boarders:
         $ref: "#/definitions/NameAndCode"
-      nursery_provision:
+      nurseryProvision:
         type: "string"
         description: ""
-      official_sixth_form:
+      officialSixthForm:
         $ref: "#/definitions/NameAndCode"
       gender:
         $ref: "#/definitions/NameAndCode"
-      religious_character:
+      religiousCharacter:
         $ref: "#/definitions/NameAndCode"
-      religious_ethos:
+      religiousEthos:
         type: "string"
         description: ""
       diocese:
         $ref: "#/definitions/NameAndCode"
-      admissions_policy:
+      admissionsPolicy:
         $ref: "#/definitions/NameAndCode"
-      school_capacity:
+      schoolCapacity:
         type: "string"
         description: ""
-      special_classes:
+      specialClasses:
         $ref: "#/definitions/NameAndCode"
       census:
         $ref: "#/definitions/Census"
-      trust_school_flag:
+      trustSchoolFlag:
         $ref: "#/definitions/NameAndCode"
       trusts:
         $ref: "#/definitions/NameAndCode"
-      school_sponsor_flag:
+      schoolSponsorFlag:
         type: "string"
         description: ""
-      school_sponsors:
+      schoolSponsors:
         type: "string"
         description: ""
-      federation_flag:
+      federationFlag:
         type: "string"
         description: ""
       federations:
@@ -629,59 +629,59 @@ definitions:
       ukprn:
         type: "string"
         description: ""
-      fehei_identifier:
+      feheiIdentifier:
         type: "string"
         description: ""
-      further_education_type:
+      furtherEducationType:
         type: "string"
         description: ""
-      ofsted_last_inspection:
+      ofstedLastInspection:
         type: "string"
         description: ""
-      ofsted_special_measures:
+      ofstedSpecialMeasures:
         $ref: "#/definitions/NameAndCode"
-      last_changed_date:
+      lastChangedDate:
         type: "string"
         description: ""
       address:
         $ref: "#/definitions/Address"
-      school_website:
+      schoolWebsite:
         type: "string"
         description: ""
-      telephone_number:
+      telephoneNumber:
         type: "string"
         description: ""
-      headteacher_title:
+      headteacherTitle:
         type: "string"
         description: ""
-      headteacher_first_name:
+      headteacherFirstName:
         type: "string"
         description: ""
-      headteacher_last_name:
+      headteacherLastName:
         type: "string"
         description: ""
-      headteacher_preferred_job_title:
+      headteacherPreferredJobTitle:
         type: "string"
         description: ""
       inspectorate:
         type: "string"
         description: ""
-      inspectorate_name:
+      inspectorateName:
         type: "string"
         description: ""
-      inspectorate_report:
+      inspectorateReport:
         type: "string"
         description: ""
-      date_of_last_inspection_visit:
+      dateOfLastInspectionVisit:
         type: "string"
         description: ""
-      date_of_next_inspection_visit:
+      dateOfNextInspectionVisit:
         type: "string"
         description: ""
-      teen_moth:
+      teenMoth:
         type: "string"
         description: ""
-      teen_moth_places:
+      teenMothPlaces:
         type: "string"
         description: ""
       CCF:
@@ -693,16 +693,16 @@ definitions:
       EBD:
         type: "string"
         description: ""
-      places_PRU:
+      placesPRU:
         type: "string"
         description: ""
       FTProv:
         type: "string"
         description: ""
-      ed_by_other:
+      edByOther:
         type: "string"
         description: ""
-      section_14_approved:
+      section14Approved:
         type: "string"
         description: ""
       SEN1:
@@ -744,32 +744,32 @@ definitions:
       SEN13:
         type: "string"
         description: ""
-      type_of_resourced_provision:
+      typeOfResourcedProvision:
         type: "string"
         description: ""
-      resourced_provision_on_roll:
+      resourcedProvisionOnRoll:
         type: "string"
         description: ""
-      resourced_provision_on_capacity:
+      resourcedProvisionOnCapacity:
         type: "string"
         description: ""
-      sen_unit_on_roll:
+      senUnitOnRoll:
         type: "string"
         description: ""
-      sen_unit_capacity:
+      senUnitCapacity:
         type: "string"
         description: ""
       GOR:
         $ref: "#/definitions/NameAndCode"
-      district_administrative:
+      districtAdministrative:
         $ref: "#/definitions/NameAndCode"
-      administrative_ward:
+      administrativeWard:
         $ref: "#/definitions/NameAndCode"
-      parliamentary_constituency:
+      parliamentaryConstituency:
         $ref: "#/definitions/NameAndCode"
-      urban_rural:
+      urbanRural:
         $ref: "#/definitions/NameAndCode"
-      GSSLA_code:
+      GSSLACode:
         type: "string"
         description: ""
       easting:
@@ -778,7 +778,7 @@ definitions:
       northing:
         type: "string"
         description: ""
-      census_area_statistic_ward:
+      censusAreaStatisticWard:
         type: "string"
         description: ""
       MSOA:
@@ -791,21 +791,21 @@ definitions:
       SENNoStat:
         type: "string"
         description: ""
-      boarding_establishment:
+      boardingEstablishment:
         type: "string"
         description: ""
-      props_name:
+      propsName:
         type: "string"
         description: ""
-      previous_local_authority:
+      previousLocalAuthority:
         $ref: "#/definitions/NameAndCode"
-      previous_establishment_number:
+      previousEstablishmentNumber:
         type: "string"
         description: ""
-      ofsted_rating:
+      ofstedRating:
         type: "string"
         description: ""
-      RSC_region:
+      RSCRegion:
         type: "string"
         description: ""
       country:
@@ -814,11 +814,11 @@ definitions:
       UPRN:
         type: "string"
         description: ""
-      MIS_establishment:
+      MISEstablishment:
         $ref: "#/definitions/MISEstablishment"
-      MIS_further_education_establishment:
+      MISFurtherEducationEstablishment:
         $ref: "#/definitions/MISFEA"
-      SMART_data:
+      SMARTData:
         $ref: "#/definitions/SMARTData"
       financial:
         $ref: "#/definitions/Placeholder"
@@ -836,13 +836,13 @@ definitions:
     description: "Full view of a project"
     type: "object"
     properties:
-      project_urn:
+      projectUrn:
         type: "string"
         description: "Unique reference for a project"
-      outgoing_trust_urn:
+      outgoingTrustUrn:
         type: "string"
         description: "The unique reference number for the outgoing trust"
-      transferring_academies: 
+      transferringAcademies: 
         type: "array"
         items:
           $ref: "#/definitions/TransferringAcademy"
@@ -856,19 +856,19 @@ definitions:
     description: "Listing academy transfer projects"
     type: "object"
     properties: 
-      project_urn:
+      projectUrn:
         type: "string"
         description: "Unique reference for a project"
-      outgoing_trust:
+      outgoingTrust:
         $ref: "#/definitions/TrustSummary"
-      transferring_academies: 
+      transferringAcademies: 
         type: "array"
         items:
           type: "object"
           properties: 
-            outgoing_academy:
+            outgoingAcademy:
               $ref: "#/definitions/AcademySummary"
-            incoming_trust:
+            incomingTrust:
               $ref: "#/definitions/TrustSummary"
   TrustSummary:
     description: "Summary of a trust"
@@ -877,10 +877,10 @@ definitions:
       ukprn:
         type: "string"
         description: "The UKPRN for the trust"
-      group_id:
+      groupId:
         type: "string"
         description: "The group ID for the trust"
-      group_name:
+      groupName:
         type: "string"
         description: "The name of the trust"
   AcademySummary: 
@@ -897,27 +897,27 @@ definitions:
     description: "Features of a transfer"
     type: "object"
     properties:
-      who_initiated_the_transfer:
+      whoInitiatedTheTransfer:
         type: "string"
         description: "Whether DfE or the outgoing trust initiated the transfer"
-      rdd_or_esfa_intervention:
+      rddOrEsfaIntervention:
         type: "boolean"
         description: "Whether or not the transfer was started due to intervention by the RDD or ESFA"
-      rdd_or_esfa_intervention_detail:
+      rddOrEsfaInterventionDetail:
         type: "string"
         description: "Further detail about RDD/ESFA Intervention"
-      type_of_transfer:
+      typeOfTransfer:
         type: "string"
         description: "The type of transfer this project is"
   TransferringAcademy:
     description: "Details of a transferring academy"
     type: object
-    required: ["outgoing_academy_urn"]
+    required: ["outgoingAcademyUrn"]
     properties:
-      outgoing_academy_urn: 
+      outgoingAcademyUrn: 
         type: "string"
         description: "Unique reference for outgoing academy"
-      incoming_trust_urn:
+      incomingTrustUrn:
         type: "string"
         description: "Unique reference for incoming trust (optional)"
   ApplyToBecomeProject:
@@ -927,11 +927,11 @@ definitions:
       urn:
         type: "string"
         description: "Unique reference for a project"
-      head_teacher_board_date: 
+      headTeacherBoardDate: 
         type: string
         format: date
         description: The date of the head teacher board.
-      opening_date:
+      openingDate:
         type: string
         format: date
         description: The opening date for the new academy
@@ -941,33 +941,33 @@ definitions:
       recommendation:
         type: string
         description: The recommendation for the school.
-      project_author:
+      projectAuthor:
         type: string
         description: TBD
-      ao_required: 
+      aoRequired: 
         type: boolean
         description: TBD
-      project_rationale:
+      projectRationale:
         type: string
         description: Long text to describe the rationale of school applying to be academy.
-      trust_sponsor_rationale:
+      trustSponsorRationale:
         type: string
         description: Long text of rationale from trust sponsor.
-      supporting_document:
+      supportingDocument:
         type: string
         description: TBD (Link to supporting document in sharepoint)
-      date_sent_to_local_authority:
+      dateSentToLocalAuthority:
         type: string
         format: date
         description: TBD
-      date_local_authority_returned_template:
+      dateLocalAuthorityReturnedTemplate:
         type: string
         format: date
         description: TBD
-      local_authority_info_comments:
+      localAuthorityInfoComments:
         type: string
         description: TBD
-      local_authority_info_template:
+      localAuthorityInfoTemplate:
         type: string
         description: TBD (Link to local authority template in sharepoint)
       details:
@@ -1010,230 +1010,230 @@ definitions:
   SMARTData:
     description: ""
     properties:
-      probability_of_declining:
+      probabilityOfDeclining:
         type: "string"
-      probability_of_staying_the_same:
+      probabilityOfStayingTheSame:
         type: "string"
-      probability_of_improving:
+      probabilityOfImproving:
         type: "string"
-      predicted_change_in_progress_8_score:
+      predictedChangeInProgress8Score:
         type: "string"
-      predicted_chance_of_change_occurring:
+      predictedChanceOfChangeOccurring:
         type: "string"
-      total_number_of_risks:
+      totalNumberOfRisks:
         type: "string"
-      total_risk_score:
+      totalRiskScore:
         type: "string"
-      risk_rating_num:
+      riskRatingNum:
         type: "string"
   MISEstablishment:
     description: "Education Establishment information from MIS"
     properties:
-      site_name:
+      siteName:
         type: "string"
         description: ""
-      web_link:
+      webLink:
         type: "string"
         description: ""
       LAESTAB:
         type: "string"
         description: ""
-      school_name:
+      schoolName:
         type: "string"
         description: ""
-      ofsted_phase:
+      ofstedPhase:
         type: "string"
         description: ""
-      type_of_education:
+      typeOfEducation:
         type: "string"
         description: ""
-      school_open_date:
+      schoolOpenDate:
         type: "string"
         description: ""
-      sixth_form:
+      sixthForm:
         type: "string"
         description: ""
-      designated_religious_character:
+      designatedReligiousCharacter:
         type: "string"
         description: ""
-      religious_ethos:
+      religiousEthos:
         type: "string"
         description: ""
-      faith_grouping:
+      faithGrouping:
         type: "string"
         description: ""
-      ofsted_region:
+      ofstedRegion:
         type: "string"
         description: ""
       region:
         type: "string"
         description: ""
-      local_authority:
+      localAuthority:
         type: "string"
         description: ""
-      parliamentary_constituency:
+      parliamentaryConstituency:
         type: "string"
         description: ""
       postcode:
         type: "string"
         description: ""
-      income_deprivation_affecting_children_index_quintile:
+      incomeDeprivationAffectingChildrenIndexQuintile:
         type: "string"
         description: ""
-      total_number_of_pupils:
+      totalNumberOfPupils:
         type: "string"
         description: ""
-      latest_section_8_inspection_number_since_last_full_inspection:
+      latestSection8InspectionNumberSinceLastFullInspection:
         type: "string"
         description: ""
-      section_8_inspection_related_to_curren_school_urn:
+      section8InspectionRelatedToCurrenSchoolUrn:
         type: "string"
         description: ""
-      urn_at_time_of_section_8_inspection:
+      urnAtTimeOfSection8Inspection:
         type: "string"
         description: ""
-      LAESTAB_at_time_of_section_8_inspection:
+      LAESTABAtTimeOfSection8Inspection:
         type: "string"
         description: ""
-      school_name_at_time_of_section_8_inspection:
+      schoolNameAtTimeOfSection8Inspection:
         type: "string"
         description: ""
-      school_type_at_time_of_section_8_inspection:
+      schoolTypeAtTimeOfSection8Inspection:
         type: "string"
         description: ""
-      number_of_section_8_inspections_since_last_full_inspection:
+      numberOfSection8InspectionsSinceLastFullInspection:
         type: "string"
         description: ""
-      number_of_other_section_8_inspections_since_last_full_inspection:
+      numberOfOtherSection8InspectionsSinceLastFullInspection:
         type: "string"
         description: ""
-      date_of_latest_section_8_inspection:
+      dateOfLatestSection8Inspection:
         type: "string"
         description: ""
-      section_8_inspection_publication_date:
+      section8InspectionPublicationDate:
         type: "string"
         description: ""
-      latest_section_8_inspection_converted_to_full_inspection:
+      latestSection8InspectionConvertedToFullInspection:
         type: "string"
         description: ""
-      section_8_inspection_overall_outcome:
+      section8InspectionOverallOutcome:
         type: "string"
         description: ""
-      inspection_number_of_latest_full_inspection:
+      inspectionNumberOfLatestFullInspection:
         type: "string"
         description: ""
-      inspection_type:
+      inspectionType:
         type: "string"
         description: ""
-      inspection_type_grouping:
+      inspectionTypeGrouping:
         type: "string"
         description: ""
-      event_type_grouping:
+      eventTypeGrouping:
         type: "string"
         description: ""
-      inspection_start_date:
+      inspectionStartDate:
         type: "string"
         description: ""
-      inspection_end_date:
+      inspectionEndDate:
         type: "string"
         description: ""
-      publication_date:
+      publicationDate:
         type: "string"
         description: ""
-      latest_full_inspection_relates_to_current_school_urn:
+      latestFullInspectionRelatesToCurrentSchoolUrn:
         type: "string"
         description: ""
-      school_urn_at_time_of_last_full_inspection:
+      schoolUrnAtTimeOfLastFullInspection:
         type: "string"
         description: ""
-      LAESTAB_at_time_of_last_full_inspection:
+      LAESTABAtTimeOfLastFullInspection:
         type: "string"
         description: ""
-      school_name_at_time_of_last_full_inspection:
+      schoolNameAtTimeOfLastFullInspection:
         type: "string"
         description: ""
-      school_type_at_time_of_last_full_inspection:
+      schoolTypeAtTimeOfLastFullInspection:
         type: "string"
         description: ""
-      overall_effectiveness:
+      overallEffectiveness:
         type: "string"
         description: ""
-      category_of_concern:
+      categoryOfConcern:
         type: "string"
         description: ""
-      quality_of_education:
+      qualityOfEducation:
         type: "string"
         description: ""
-      behaviour_and_attitudes:
+      behaviourAndAttitudes:
         type: "string"
         description: ""
-      personal_development:
+      personalDevelopment:
         type: "string"
         description: ""
-      effectiveness_of_leadership_and_management:
+      effectivenessOfLeadershipAndManagement:
         type: "string"
         description: ""
-      safeguarding_is_effective:
+      safeguardingIsEffective:
         type: "string"
         description: ""
-      early_years_provision:
+      earlyYearsProvision:
         type: "string"
         description: ""
-      sixth_form_provision:
+      sixthFormProvision:
         type: "string"
         description: ""
-      previous_full_inspection_number:
+      previousFullInspectionNumber:
         type: "string"
         description: ""
-      previous_inspection_start_date:
+      previousInspectionStartDate:
         type: "string"
         description: ""
-      previous_inspection_end_date:
+      previousInspectionEndDate:
         type: "string"
         description: ""
-      previous_publication_date:
+      previousPublicationDate:
         type: "string"
         description: ""
-      previous_full_inspection_relates_to_urn_of_current_school:
+      previousFullInspectionRelatesToUrnOfCurrentSchool:
         type: "string"
         description: ""
-      urn_at_the_time_of_previous_full_inspection:
+      urnAtTheTimeOfPreviousFullInspection:
         type: "string"
         description: ""
-      LAESTAB_at_the_time_of_previous_full_inspection:
+      LAESTABAtTheTimeOfPreviousFullInspection:
         type: "string"
         description: ""
-      school_name_at_the_time_of_previous_full_inspection:
+      schoolNameAtTheTimeOfPreviousFullInspection:
         type: "string"
         description: ""
-      school_type_at_the_time_of_previous_full_inspection:
+      schoolTypeAtTheTimeOfPreviousFullInspection:
         type: "string"
         description: ""
-      previous_full_inspection_overall_effectiveness:
+      previousFullInspectionOverallEffectiveness:
         type: "string"
         description: ""
-      previous_category_of_concern:
+      previousCategoryOfConcern:
         type: "string"
         description: ""
-      previous_quality_of_education:
+      previousQualityOfEducation:
         type: "string"
         description: ""
-      previous_behaviour_and_attitudes:
+      previousBehaviourAndAttitudes:
         type: "string"
         description: ""
-      previous_personal_development:
+      previousPersonalDevelopment:
         type: "string"
         description: ""
-      previous_effectiveness_of_leadership_and_management:
+      previousEffectivenessOfLeadershipAndManagement:
         type: "string"
         description: ""
-      previous_is_safeguarding_effective:
+      previousIsSafeguardingEffective:
         type: "string"
         description: ""
-      previous_early_years_provision:
+      previousEarlyYearsProvision:
         type: "string"
         description: ""
-      previous_sixth_form_provision:
+      previousSixthFormProvision:
         type: "string"
         description: ""
   MISFEA:
@@ -1241,101 +1241,101 @@ definitions:
     properties:
       provider:
         $ref: "#/definitions/Provider"
-      local_authority:
+      localAuthority:
         type: "string"
         description: ""
       region:
         type: "string"
         description: ""
-      ofsted_region:
+      ofstedRegion:
         type: "string"
         description: ""
-      date_of_latest_short_inspection:
+      dateOfLatestShortInspection:
         type: "string"
         description: ""
-      number_of_short_inspections_since_last_full_inspection_RAW:
+      numberOfShortInspectionsSinceLastFullInspectionRAW:
         type: "string"
         description: ""
-      number_of_short_inspections_since_last_full_inspection:
+      numberOfShortInspectionsSinceLastFullInspection:
         type: "string"
         description: ""
-      inspection_number:
+      inspectionNumber:
         type: "string"
         description: ""
-      inspection_type:
+      inspectionType:
         type: "string"
         description: ""
-      first_day_of_inspection:
+      firstDayOfInspection:
         type: "string"
         description: ""
-      last_day_of_inspection:
+      lastDayOfInspection:
         type: "string"
         description: ""
-      date_published:
+      datePublished:
         type: "string"
         description: ""
-      overall_effectiveness_RAW:
+      overallEffectivenessRAW:
         type: "string"
         description: ""
-      overall_effectiveness:
+      overallEffectiveness:
         type: "string"
         description: ""
-      quality_of_education_RAW:
+      qualityOfEducationRAW:
         type: "string"
         description: ""
-      quality_of_education:
+      qualityOfEducation:
         type: "string"
         description: ""
-      behaviour_and_attitudes_RAW:
+      behaviourAndAttitudesRAW:
         type: "string"
         description: ""
-      behaviour_and_attitudes:
+      behaviourAndAttitudes:
         type: "string"
         description: ""
-      personal_development_RAW:
+      personalDevelopmentRAW:
         type: "string"
         description: ""
-      personal_development:
+      personalDevelopment:
         type: "string"
         description: ""
-      effectiveness_of_leadership_and_management_RAW:
+      effectivenessOfLeadershipAndManagementRAW:
         type: "string"
         description: ""
-      effectiveness_of_leadership_and_management:
+      effectivenessOfLeadershipAndManagement:
         type: "string"
         description: ""
-      is_safeguarding_effective:
+      isSafeguardingEffective:
         type: "string"
         description: ""
-      previous_inspection_number:
+      previousInspectionNumber:
         type: "string"
         description: ""
       # this key is repeated 3 times in MIS/TRAMS, unsure of reason
-      previous_last_day_of_inspection:
+      previousLastDayOfInspection:
         type: "string"
         description: ""
-      previous_overall_effectiveness_RAW:
+      previousOverallEffectivenessRAW:
         type: "string"
         description: ""
-      previous_overall_effectiveness:
+      previousOverallEffectiveness:
         type: "string"
         description: ""
   Census:
     description: "Census data for an establishment"
     properties:
-      census_date:
+      censusDate:
         type: "string"
         description: ""
-      number_of_pupils:
+      numberOfPupils:
         type: "string"
         description: ""
-      number_of_boys:
+      numberOfBoys:
         type: "string"
         description: ""
-      number_of_girls:
+      numberOfGirls:
         type: "string"
         description: ""
-      percentage_fsm:
+      percentageFsm:
         type: "string"
         description: ""
 externalDocs:
