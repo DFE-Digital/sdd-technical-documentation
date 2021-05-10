@@ -59,7 +59,7 @@ paths:
     get:
       tags:
       - "Trust"
-      summary: "Get trusts with optional query parameter"
+      summary: "Get trusts with optional query parameters"
       description: ""
       operationId: "searchTrusts"
       consumes:
@@ -120,7 +120,7 @@ paths:
     get:
       tags:
       - "Establishment"
-      summary: "Search for establishments by matching query parameters"
+      summary: "Get establishments with optional query parameters"
       description: ""
       operationId: "searchAcademies"
       consumes:
