@@ -12,7 +12,7 @@ info:
 host: "tbd.swagger.io"
 basePath: "/v1"
 tags:
-- name: "Academy"
+- name: "Establishment"
   description: "Information about establishments"
 - name: "Trust"
   description: "Information about Trusts and Multi-Academy Trusts"
@@ -31,19 +31,19 @@ tags:
 schemes:
 - "https"
 paths:
-  /trust/{urn}:
+  /trust/{ukprn}:
     get:
       tags:
       - "Trust"
-      summary: "Get information about a trust by URN"
+      summary: "Get information about a trust by UKPRN"
       description: ""
       operationId: "getTrust"
       produces:
       - "application/json"
       parameters:
-      - name: "urn"
+      - name: "ukprn"
         in: "path"
-        description: "Universal reference of Trust to return"
+        description: "UK Provider Reference Number of Trust to return"
         required: true
         type: "string"
       responses:
@@ -59,7 +59,7 @@ paths:
     get:
       tags:
       - "Trust"
-      summary: "Get trusts with optional query parameter"
+      summary: "Get trusts with optional query parameters"
       description: ""
       operationId: "searchTrusts"
       consumes:
@@ -90,11 +90,11 @@ paths:
               $ref: "#/definitions/TrustListItem"
       security:
       - ApiKeyAuth: []
-  /academy/{urn}:
+  /establishment/{ukprn}:
     get:
       tags:
-      - "Academy"
-      summary: "Get academy by Unique Reference Number (URN)"
+      - "Establishment"
+      summary: "Get academy by UK Provider Reference Number(UKPRN)"
       description: ""
       operationId: "getAcademy"
       consumes:
@@ -102,25 +102,25 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "urn"
+      - name: "ukprn"
         in: "path"
-        description: "Universal reference of Academy to return"
+        description: "UK Provider Reference Number of Establishment to return"
         required: true
         type: "string"
       responses:
         "404":
-          description: "Academy not found"
+          description: "Establishment not found"
         "200":
           description: "successful operation"
           schema:
             $ref: "#/definitions/Academy"
       security:
       - ApiKeyAuth: []
-  /academies:
+  /establishments:
     get:
       tags:
-      - "Academy"
-      summary: "Search for academies by matching query parameters"
+      - "Establishment"
+      summary: "Get establishments with optional query parameters"
       description: ""
       operationId: "searchAcademies"
       consumes:
@@ -130,11 +130,11 @@ paths:
       parameters:
       - in: "query"
         name: "urn"
-        description: "Search a using optional academy reference number"
+        description: "Search a using optional establishment reference number"
         type: "string"
       - in: "query"
         name: "name"
-        description: "Search a using optional academy name"
+        description: "Search a using optional establishment name"
         type: "string"
       responses:
         "405":
