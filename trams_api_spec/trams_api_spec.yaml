@@ -365,18 +365,36 @@ securityDefinitions:
     name: ApiKey
 definitions:
   CreateOrUpdateAcademyTransferProject:
-    description: "Create or update a AT Project"
+    description: "Creating or updating an academy transfer project"
     type: "object"
     properties:
-      outgoing_trust_urn:
+      project_urn:
         type: "string"
-        description: "The unique reference number for the outgoing trust"
+        description: "Unique reference for a project, not required on create"
+      outgoing_trust_ukprn:
+        type: "string"
+        description: "The ukprn of the outgoing trust"
       transferring_academies: 
         type: "array"
         items:
-          $ref: "#/definitions/TransferringAcademy"
+          description: "Details of a transferring academy"
+          type: object
+          required: ["outgoing_academy_ukprn"]
+          properties:
+            outgoing_academy_ukprn: 
+              type: "string"
+              description: "UKPRN For the outgoing academy"
+            incoming_trust_ukprn:
+              type: "string"
+              description: "UKPRN for the incoming trust (optional)"
       features:
         $ref: "#/definitions/AcademyTransferProjectFeatures"
+      dates:
+        $ref: "#/definitions/AcademyTransferProjectDates"
+      benefits:
+        $ref: "#/definitions/AcademyTransferProjectBenefits"
+      rationale:
+        $ref: "#/definitions/AcademyTransferProjectRationale"
       state:
         type: "string"
       status:
@@ -839,15 +857,23 @@ definitions:
       project_urn:
         type: "string"
         description: "Unique reference for a project"
-      outgoing_trust_urn:
+      project_number:
         type: "string"
-        description: "The unique reference number for the outgoing trust"
+        description: "The unique number for the project, in the format AT-XXXX, where XXXX is an auto-incrementing number"
+      outgoing_trust:
+        $ref: "#/definitions/TrustSummary"
       transferring_academies: 
         type: "array"
         items:
           $ref: "#/definitions/TransferringAcademy"
       features:
         $ref: "#/definitions/AcademyTransferProjectFeatures"
+      dates:
+        $ref: "#/definitions/AcademyTransferProjectDates"
+      benefits:
+        $ref: "#/definitions/AcademyTransferProjectBenefits"
+      rationale:
+        $ref: "#/definitions/AcademyTransferProjectRationale"
       state:
         type: "string"
       status:
@@ -859,17 +885,15 @@ definitions:
       project_urn:
         type: "string"
         description: "Unique reference for a project"
+      project_number:
+        type: "string"
+        description: "The unique number for the project, in the format AT-XXXX, where XXXX is an auto-incrementing number"
       outgoing_trust:
         $ref: "#/definitions/TrustSummary"
       transferring_academies: 
         type: "array"
         items:
-          type: "object"
-          properties: 
-            outgoing_academy:
-              $ref: "#/definitions/AcademySummary"
-            incoming_trust:
-              $ref: "#/definitions/TrustSummary"
+          $ref: "#/definitions/TransferringAcademy"
   TrustSummary:
     description: "Summary of a trust"
     type: "object"
@@ -909,17 +933,81 @@ definitions:
       type_of_transfer:
         type: "string"
         description: "The type of transfer this project is"
+      other_transfer_type_description:
+        type: "string"
+        description: "The description of a transfer if 'other' is selected"
+  AcademyTransferProjectDates:
+    type: "object"
+    properties:
+      transfer_first_discussed:
+        type: "string"
+        description: "The date the transfer was first discussed"
+      target_date_for_transfer:
+        type: "string"
+        description: "The target date for the transfer"
+      htb_date:
+        type: "string"
+        description: "The date for the HTB"
+  AcademyTransferProjectBenefits:
+    type: "object"
+    properties: 
+      intended_transfer_benefits:
+        type: "object"
+        description: "The benefits for performing the transfer"
+        properties:
+          selected_benefits:
+            type: "array"
+            description: "The selected benefits"
+            items:
+              type: "string"
+          other_benefit_value:
+            type: "string"
+            description: "The value when a user has selected the 'other' benefit"
+      other_factors_to_consider:
+        type: "object"
+        description: "Any other factors to consider during the transfer"
+        properties:
+          high_profile:
+            type: "object"
+            description: "Is the transfer high profile"
+            properties: 
+              should_be_considered:
+                type: "boolean"
+              further_specification:
+                type: "string"
+          complex_land_and_building:
+            type: "object"
+            description: "Are there complex land and building issues"
+            properties: 
+              should_be_considered:
+                type: "boolean"
+              further_specification:
+                type: "string"
+          finance_and_debt:
+            type: "object"
+            description: "Are there finance and debt concerns"
+            properties: 
+              should_be_considered:
+                type: "boolean"
+              further_specification:
+                type: "string"
+  AcademyTransferProjectRationale:
+    type: "object"
+    properties: 
+      project_rationale:
+        type: "string"
+        description: "Long text describing the rationale for the project"
+      trust_sponsor_rationale:
+        type: "string"
+        description: "Long text describing the rationale for the project"
   TransferringAcademy:
     description: "Details of a transferring academy"
-    type: object
-    required: ["outgoing_academy_urn"]
-    properties:
-      outgoing_academy_urn: 
-        type: "string"
-        description: "Unique reference for outgoing academy"
-      incoming_trust_urn:
-        type: "string"
-        description: "Unique reference for incoming trust (optional)"
+    type: "object"
+    properties: 
+      outgoing_academy:
+        $ref: "#/definitions/AcademySummary"
+      incoming_trust:
+        $ref: "#/definitions/TrustSummary"
   ApplyToBecomeProject:
     description: "Full view of a project"
     type: "object"
