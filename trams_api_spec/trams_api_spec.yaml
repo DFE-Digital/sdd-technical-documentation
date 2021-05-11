@@ -933,6 +933,9 @@ definitions:
       type_of_transfer:
         type: "string"
         description: "The type of transfer this project is"
+      other_transfer_type_description:
+        type: "string"
+        description: "The description of a transfer if 'other' is selected"
   AcademyTransferProjectDates:
     type: "object"
     properties:
