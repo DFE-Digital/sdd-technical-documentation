@@ -470,7 +470,7 @@ definitions:
       establishments:
         type: "array"
         items:
-          $ref: "#/definitions/Academy"
+          $ref: "#/definitions/Establishment"
   TrustIFDData:
     description: "Data about a Trust from IFD"
     properties:
