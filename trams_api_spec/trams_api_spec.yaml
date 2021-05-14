@@ -113,7 +113,7 @@ paths:
         "200":
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Academy"
+            $ref: "#/definitions/Establishment"
       security:
       - ApiKeyAuth: []
   /establishments:
@@ -467,10 +467,10 @@ definitions:
         $ref: "#/definitions/TrustIFDData"
       gias_data:
         $ref: "#/definitions/TrustGIASData"
-      academies:
+      establishments:
         type: "array"
         items:
-          $ref: "#/definitions/Academy"
+          $ref: "#/definitions/Establishment"
   TrustIFDData:
     description: "Data about a Trust from IFD"
     properties:
@@ -561,12 +561,12 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AcademyListItem"
-  Academy:
+  Establishment:
     type: "object"
     properties:
       urn:
         type: "string"
-        description: "Unique reference for an Academy"
+        description: "Unique reference for an Establishment"
       local_authority_code:
         type: "string"
         description: ""
