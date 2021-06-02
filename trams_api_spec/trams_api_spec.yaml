@@ -399,6 +399,28 @@ definitions:
         type: "string"
       status:
         type: "string"
+      general_information:
+        type: "object"
+        properties:
+          recommendation: 
+            type: "string"
+          author:
+            type: "string"
+      academy_performance:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      pupil_numbers:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      latest_ofsted_judgement:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      key_stage_performance:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      financial_assessment:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+  AcademyTransferProjectReferenceSection:
+    type: "object"
+    properties:
+      additional_information:
+        type: "string"
   CreateOrUpdateApplyToBecomeProject:
     description: "Create or update a A2B Project"
     type: "object"
@@ -878,6 +900,23 @@ definitions:
         type: "string"
       status:
         type: "string"
+      general_information:
+        type: "object"
+        properties:
+          recommendation: 
+            type: "string"
+          author:
+            type: "string"
+      academy_performance:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      pupil_numbers:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      latest_ofsted_judgement:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      key_stage_performance:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
+      financial_assessment:
+        $ref: "#/definitions/AcademyTransferProjectReferenceSection"
   AcademyTransferProjectSummary:
     description: "Listing academy transfer projects"
     type: "object"
