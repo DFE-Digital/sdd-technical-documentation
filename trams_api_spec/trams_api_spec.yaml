@@ -209,15 +209,24 @@ paths:
       tags:
         - "Academy Transfer Project"
       summary: "List academy transfer projects"
-      description: "List truncated versions of academy transfer projects"
+      description: "List 10 paginated, truncated versions of academy transfer projects"
       operationId: "listAcademyTransferProjects"
       produces:
         - "application/json"
+       parameters:
+        - name: "page"
+          in: "query"
+          description: "Page number to search for"
+          required: false
+          type: "integer",
+          default: 1
       responses:
         "200":
           description: ""
           schema:
-            $ref: "#/definitions/AcademyTransferProjectSummary"
+            type: "array",
+            items:
+              $ref: "#/definitions/AcademyTransferProjectSummary"
       security:
       - ApiKeyAuth: []
   /academyTransferProject:
