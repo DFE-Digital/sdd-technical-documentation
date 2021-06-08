@@ -955,19 +955,19 @@ definitions:
       group_name:
         type: "string"
         description: "The name of the trust"
-  AcademySummary: 
-    description: "Summary of an academy"
+  EstablishmentSummary: 
+    description: "Summary of an establishment"
     type: "object"
     properties: 
       urn:
         type: "string"
-        description: "The URN for the academy"
+        description: "The URN for the establishment"
       ukprn:
         type: "string"
-        description: "The UKPRN for the academy"
+        description: "The UKPRN for the establishment"
       name:
         type: "string"
-        description: "The name of the academy"
+        description: "The name of the establishment"
   AcademyTransferProjectFeatures:
     description: "Features of a transfer"
     type: "object"
@@ -1056,7 +1056,7 @@ definitions:
     type: "object"
     properties: 
       outgoing_academy:
-        $ref: "#/definitions/AcademySummary"
+        $ref: "#/definitions/EstablishmentSummary"
       incoming_trust:
         $ref: "#/definitions/TrustSummary"
   ApplyToBecomeProject:
