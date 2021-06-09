@@ -358,12 +358,182 @@ paths:
               $ref: "#/definitions/ProjectListItem"
       security:
       - ApiKeyAuth: []
+  /keyStagePerformance/{ukprn}:
+    get:
+      tags:
+      - "Key Stage Performance"
+      summary: "Get Key Stage Performance Data about the provided establishment"
+      description: "Get Key Stage Performance Data about the provided establishment"
+      operationId: "getKeyStagePerformanceData"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "ukprn"
+          in: "path"
+          description: "UKPRN of the establishment you want Data for"
+          required: true
+          type: "string"
+      responses:
+        "404":
+          description: "Key stage data not found for that establishment"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KeyStagePerformanceList"
+      security:
+      - ApiKeyAuth: []
 securityDefinitions:
   ApiKeyAuth:
     type: apiKey
     in: header
     name: ApiKey
 definitions:
+  KeyStagePerformanceList: 
+        type: "array"
+        items:
+          $ref: "#/definitions/KeyStagePerformance"
+          
+  KeyStagePerformance:
+    description: "Key Stage Performation data about an education establishment"
+    type: "object"
+    properties:
+      establishment_ukprn:
+        type: "string"
+        description: "UKPRN for the education establishment"
+      date:
+        type: "string"
+        description: "Date the performance results are for"
+      KS1:
+        type: "object"
+        properties:
+          reading:
+            type: "string"
+            description: "KS1 Reading Percentage Results"
+          writing:
+            type: "string"
+            description: "KS1 Writing Percentage Results"
+          maths:
+            type: "string"
+            description: "KS1 Maths Percentage Results"
+          2018_nat_mean_avg_reading:
+            type: "string"
+            description: "KS1 reading national mean average"
+          2018_nat_mean_avg_writing:
+            type: "string"
+            description: "KS1 writing national mean average"
+          2018_nat_mean_avg_maths:
+            type: "string"
+            description: "KS1 maths national mean average"
+          local_authority_average:
+            type: "string"
+            description: ""
+      KS2:
+        type: "object"
+        properties:
+          meeting_expected_std_in_RWM_PP_year:
+            type: "string"
+            description: ""
+          achieving_a_higher_std_in_RWM_PP_year:
+            type: "string"
+            description: ""
+          2017_progress_score_PP_maths:
+            type: "string"
+            description: ""
+          2017_progress_score_PP_writing:
+            type: "string"
+            description: ""
+          2017_progress_score_PP_reading:
+            type: "string"
+            description: ""
+          2018_progress_score_PP_maths:
+            type: "string"
+            description: ""
+          2018_progress_score_PP_reading:
+            type: "string"
+            description: ""
+          2018_progress_score_PP_writing:
+            type: "string"
+            description: ""
+          2019_progress_score_PP_reading:
+            type: "string"
+            description: ""
+          2019_progress_score_PP_writing:
+            type: "string"
+            description: ""
+          2019_progress_score_PP_maths:
+            type: "string"
+            description: ""
+          national_average_average_achieving_higher_std_in_RWM:
+            type: "string"
+            description: ""
+          national_average_meeting_expected_std_in_RWM:
+            type: "string"
+            description: ""
+          national_average_achieving_higher_std_in_RVM:
+            type: "string"
+            description: ""
+          national_average_meeting_expected_std_in_RVM:
+            type: "string"
+            description: ""
+      KS4:
+        type: "object"
+        properties:
+          national_average_A8_score:
+            type: "string"
+            description: ""
+          national_average_A8_english:
+            type: "string"
+            description: ""
+          national_average_A8_maths:
+            type: "string"
+            description: ""
+          national_average_A8_EBacc:
+            type: "string"
+            description: ""
+          national_average_pupils_included_in_P8:
+            type: "string"
+            description: ""
+          national_average_P8_score:
+            type: "string"
+            description: ""
+          national_average_P8_lower_cl:
+            type: "string"
+            description: ""
+          national_average_P8_upper_cl:
+            type: "string"
+            description: ""
+          national_average_P8_english:
+            type: "string"
+            description: ""
+          national_average_P8_maths:
+            type: "string"
+            description: ""
+          national_average_P8_EBacc:
+            type: "string"
+            description: ""
+          national_average:
+            type: "string"
+            description: ""
+          opening_date_or_date_joined_trust:
+            type: "string"
+            description: ""
+      KS5:
+        type: "object"
+        properties:
+          academy_prog_by_year:
+            type: "string"
+            description: ""
+          academy_avg_by_year:
+            type: "string"
+            description: ""
+          national_average_applied_general_average:
+            type: "string"
+            description: ""
+          
+
+
   CreateOrUpdateAcademyTransferProject:
     description: "Creating or updating an academy transfer project"
     type: "object"
