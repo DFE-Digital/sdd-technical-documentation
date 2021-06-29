@@ -6,7 +6,7 @@ How do we expect log output to be made available to assist in production monitor
 
 We should follow guidance available from the [GovPaaS Technical Documentation](https://docs.cloud.service.gov.uk/monitoring_apps.html#logs) in terms of which log aggregation framework to utilize. Currently this is [Logit](https://logit.io) when the service is running on GovPaaS, and Application Insights when on Azure. However we place high value in consistency, so will investigate the use of Logit on Azure as well.
 
-### Logit-specific recomendations 
+### Logit-specific recommendation 
 
 It is recommended to write the log output as JSON for easier parsing and thus searching from Logit. To accomplish this a reference to Serilog can be added and then configured as per the changes made in [this PR](https://github.com/DFE-Digital/academy-transfers-api/pull/97/files).
 
@@ -14,17 +14,17 @@ To enable Logit in GovPaaS, follow the GovPaaS instructions [here](https://docs.
 
 ## Writing helpful log output
 
-Using the `ILogger` abstraction provided as part of the .NET Core common libraries, we should look to write log output with 'future us' (not 'future me') in mind. Recommendations which help us with this include:
+Using the `ILogger` abstraction provided as part of the .NET MVC libraries, we should look to write log output with 'future us' in mind. Recommendations which help us with this include:
 
 ### Provide detailed log messages
 
-Output what would you like to see when something goes wrong. Then additionally think what output someone else would need to see in order to debug an issue - they lack the context you do. 
+Output what would you like to see when something goes wrong. Then additionally think what output someone else would need to see in order to debug an issue - they lack the context you do.
 
 You may opt to take the logging output for a test drive - exercise the feature and send the log output to a member of your team - could they tell what has happened?
 
 Inclusion of stack traces - use the overload for `LogError` which takes an `Exception` object to include nicely formatted exception information including the stack trace. Don't format your own exception details string unless you have a good reason to.
 
-### Appropriate use of logging levels and structured logging
+### Log to appropriate logging levels
 
 1. **Trace** - used to trace flow through code. Consider this is a code smell if used in production. An alternative to stepping through code line-by-line, it is typically not required if following TDD. It is disabled by default when not in a development environment.
 
@@ -50,7 +50,7 @@ Inclusion of stack traces - use the overload for `LogError` which takes an `Exce
    
    **Example:** application shutdown due to out-of-memory; host machine reboot; inability to bind to inbound network address.
 
-#### Structured logging
+#### Utilize structured logging
 
 This is an easy way to attach different metadata to a logging event beyond just supplying a message string. This extra metadata is then searchable in the log aggregator via a separate field.
 
