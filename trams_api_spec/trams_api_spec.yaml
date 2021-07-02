@@ -136,6 +136,10 @@ paths:
         name: "name"
         description: "Search a using optional establishment name"
         type: "string"
+     - in: "query"
+       name: "ukprn"
+       description: "Search using an optional UKPRN"
+       type: "string"
       responses:
         "405":
           description: "Invalid input"
