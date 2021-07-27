@@ -64,4 +64,4 @@ As we need to maintain two versions within one branch, the codebase will grow in
 
 # Supporting Info (optional)
 
-N/A
+- [GDS Technical Standards](https://www.gov.uk/guidance/gds-api-technical-and-data-standards#when-iterating-your-api) - guidance on iterating your API, making backwards incompatible changes
