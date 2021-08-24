@@ -136,10 +136,10 @@ paths:
         name: "name"
         description: "Search a using optional establishment name"
         type: "string"
-     - in: "query"
-       name: "ukprn"
-       description: "Search using an optional UKPRN"
-       type: "string"
+      - in: "query"
+        name: "ukprn"
+        description: "Search using an optional UKPRN"
+        type: "string"
       responses:
         "405":
           description: "Invalid input"
@@ -217,18 +217,18 @@ paths:
       operationId: "listAcademyTransferProjects"
       produces:
         - "application/json"
-       parameters:
-        - name: "page"
-          in: "query"
-          description: "Page number to search for"
-          required: false
-          type: "integer",
-          default: 1
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "Page number to search for"
+        required: false
+        type: "integer"
+        default: 1
       responses:
         "200":
           description: ""
           schema:
-            type: "array",
+            type: "array"
             items:
               $ref: "#/definitions/AcademyTransferProjectSummary"
       security:
