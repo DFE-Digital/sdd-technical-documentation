@@ -344,6 +344,38 @@ paths:
             $ref: "#/definitions/ApplyToBecomeProject"
       security:
       - ApiKeyAuth: []
+  /v2/applyToBecomeProjects:
+    get:
+      tags:
+      - "Apply to Become Project"
+      summary: "Get conversion projects"
+      description: ""
+      operationId: "getA2BProjects"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "body"
+        description: "Project status to filter conversion projects by"
+        schema:
+          $ref: "#/definitions/ConversionProjectsRequest"
+      responses:
+        "404":
+          description: "Projects not found"
+        "200":
+          description: "Projects found"
+          schema:
+            type: object
+            properties:
+              data:
+                type: "array"
+                description: List of Conversion Projects
+                items: 
+                   $ref: "#/definitions/ApplyToBecomeProject"
+      security:
+      - ApiKeyAuth: []
   /projects:
     get:
       tags:
@@ -377,6 +409,16 @@ securityDefinitions:
     in: header
     name: ApiKey
 definitions:
+  ConversionProjectsRequest:
+    description: "Creating or updating an academy transfer project"
+    type: "object"
+    properties:
+      status: 
+        type: "array"
+        description: "Statuses to filter conversion projects by"
+        items:
+          type: "string"
+        example: [Approved for AO Pipeline, Approved for AO, Incomplete Application]
   CreateOrUpdateAcademyTransferProject:
     description: "Creating or updating an academy transfer project"
     type: "object"
@@ -1115,6 +1157,15 @@ definitions:
         description: TBD (Link to local authority template in sharepoint)
       details:
         $ref: "#/definitions/Placeholder"
+      upin: 
+        type: string
+        description: UPID for the conversion project
+      new_academy_urn:
+        type: string
+        description: URN for the new academy
+      project_state:
+        type: string
+        description: The state of the project
   ProjectListItem:
     description: "Partial information about a project suitable for a paginated list"
     type: "object"
