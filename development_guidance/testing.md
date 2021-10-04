@@ -6,6 +6,8 @@ We refer to the ['test pyramid'](https://martinfowler.com/bliki/TestPyramid.html
 
 Items at the top of the pyramid are typically slower and more costly, so we aim to write fewer of those tests, though they also typically provide high coverage and confidence, so are a useful tool.
 
+The testing pyramid and how we test each layer are elaborated further in the SDD Testing Strategy document hosted in the DfE Sharepoint instance. The link to this is [here](https://educationgovuk.sharepoint.com.mcas.ms/sites/ServiceDeliveryDirectorate/Shared%20Documents/Forms/AllItems.aspx?cid=e7a83aa3%2D8334%2D41d2%2Dba2b%2D7255c0fe550f&RootFolder=%2Fsites%2FServiceDeliveryDirectorate%2FShared%20Documents%2FSDD%20Cross%20cutting%2FTechnology&FolderCTID=0x012000265B42F1C27524438F6B1CC14FCF9E05).
+
 ## Test Properties
 
 Credit to [Kent Beck](https://medium.com/@kentbeck_7670/test-desiderata-94150638a4b3)
