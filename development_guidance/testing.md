@@ -1,10 +1,14 @@
 # Testing Strategy
 
+This document presents principles behind our testing methodology. There is more specific guidance available in the SDD Testing Strategy document hosted in the DfE Sharepoint instance. The link to this is [here](https://educationgovuk.sharepoint.com.mcas.ms/sites/ServiceDeliveryDirectorate/Shared%20Documents/Forms/AllItems.aspx?cid=e7a83aa3%2D8334%2D41d2%2Dba2b%2D7255c0fe550f&RootFolder=%2Fsites%2FServiceDeliveryDirectorate%2FShared%20Documents%2FSDD%20Cross%20cutting%2FTechnology&FolderCTID=0x012000265B42F1C27524438F6B1CC14FCF9E05).
+
 ## Types of Testing
 
 We refer to the ['test pyramid'](https://martinfowler.com/bliki/TestPyramid.html) as a convenient way to understand common types of testing we can perform, and to also articulate how different types of testing can be faster or slower to implement and execute, and can be more or less costly in terms of investment to create and maintain.
 
 Items at the top of the pyramid are typically slower and more costly, so we aim to write fewer of those tests, though they also typically provide high coverage and confidence, so are a useful tool.
+
+The testing pyramid and how we test each layer are elaborated further in the SDD Testing Strategy document.
 
 ## Test Properties
 
