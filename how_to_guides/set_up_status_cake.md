@@ -1,6 +1,6 @@
 # How to set up status cake with your service
 
-This guide outlines the basic requirements to set up status cake to monitor your website up time. Status cake works by making requests to your endpoint at given intervals and then sending a notification if it fails to receive a success HTTP status code. It can send notifications to email addresses and slack channels etc.
+This guide will include setting up notifications to email addresses and Slack channels, and the team may opt to include mobile phone alerts as well.
 
 ## Request account access
 
@@ -41,7 +41,7 @@ This should take you to the page with all DfE tests.
 
 ### Create a slack integration
 
-- Ensure you have a slack channel you want to use for alerts or create a new one
+- Ensure you have a slack channel you want to use for alerts or create a new one (if you do not have permissions to create one, ask in the digital-tools-support slack channel)
 - On the `ALERTING` menu on the left click `Integrations`
 - Assuming an integration doesn't already exist, at the top of the page select Type = Slack
 - Click Add to Slack
@@ -51,8 +51,8 @@ This should take you to the page with all DfE tests.
 ### Create a new Contact Group
 
 - On the `ALERTING` menu on the left click `New Contact Group`
-- Give the name a suitable name
-- Add emails to be notified as required
+- Give the name a suitable name using the naming convention `team-subteam` e.g. SDD-Manage an academy transfer
+- Add emails to be notified as required. Note that whilst testing you should use a suitable personal email address such as your education.gov.uk email address, but for production scenarios a team-wide email should be used so that the notification isn't tied to an account and multiple people will receive the notification
 - In slack integrations select the integration you created in the step above
 - Click Save Now
 
@@ -60,7 +60,7 @@ This should take you to the page with all DfE tests.
 
 - On the `MONITORING` menu on the left click `New Uptime Test`
 - Enter the url of the healthcheck endpoint
-- Give the test a suitable name
+- Give the test a suitable name using the naming convention `team-subteam` e.g. SDD-Manage an academy transfer
 - Select the contact group listed above
 - Select the desired check rate, a common inrterval is 5 minutes
 - Click Save now
