@@ -109,8 +109,7 @@ The `AddScriptsSrc` `UnsafeInline().WithNonce()` method ensures that scripts wil
 
 ```html
 <body class="govuk-template__body ">
-@if (_environment.IsProduction())
-{
+<environment include="production">
      <!-- Google Tag Manager (noscript) -->
      <noscript nonce="@nonce">
         <iframe src=https://www.googletagmanager.com/ns.html?id=XXXXX
@@ -118,7 +117,7 @@ The `AddScriptsSrc` `UnsafeInline().WithNonce()` method ensures that scripts wil
         </iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-}
+</environment>
 <script nonce="@nonce">
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 </script>
