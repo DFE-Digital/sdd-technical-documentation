@@ -1,8 +1,61 @@
-# How to add security headers to an asp.net core project
+# How to increase security in asp.net core web applications
 
-This guide shows a base approach to increasing security within an asp.net core web application by adding security headers using the NetEscapades framework.
+This guide shows a base approach to increasing security within an asp.net core web application by resolving issues raised in the IT Health Check process.
 
-## Install the NetEscapades.AspNetCore.SecurityHeaders nuget package
+
+
+## Increase security by removing the verbose server HTTP response header
+
+By default an asp.net core web applicaiton will add the following HTTP header:
+
+`Server: Kestrel`
+
+This is flagged by the ITHC process as a security risk, by providing technical information which can potentially assist a malicious actor in targetting further attacks. The report recommends removing this. To do so add the `AddServerHeader = false` to the `CreateHostBuilder` method of the `Program` class, e.g. below..
+
+```csharp
+
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseSerilog()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseKestrel(options =>
+                    {
+                        options.AddServerHeader = false;
+                    });
+                });
+
+```
+
+
+
+## Ensure cookies are secure
+
+Ensure cookies are secure, e.g. by setting the policy in the `ConfigureServices` method of the `Startup` class..
+
+```csharp
+
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/home/login";
+                options.Cookie.Name = ".<exampleServiceName>.Login";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;                
+            });
+
+```
+
+
+
+## Add HTTP security headers
+
+The health check process highlighted some missing security HTTP headers. To ensure robust security headers are added, use the NetEscapades nuget package to simplify the process of setting up CSP headers, which can be complex. CSP headers provide an effective way of mitigating XSS attacks by refusing to run inline scripts (for example) unless they include a unique value (a nonce).
+
+
+### Install the NetEscapades.AspNetCore.SecurityHeaders nuget package
 
 Install using the [NetEscapades.AspNetCore.SecurityHeaders NuGet package](https://www.nuget.org/packages/NetEscapades.AspNetCore.SecurityHeaders) from the Visual Studio Package Manager Console:
 
@@ -18,9 +71,10 @@ dotnet package add Install-Package NetEscapades.AspNetCore.SecurityHeaders
 
 Further information can be found at https://github.com/andrewlock/NetEscapades.AspNetCore.SecurityHeaders
 
-## Install the NetEscapades.AspNetCore.SecurityHeaders.TagHelpers nuget package
 
-Install this additional package to use the `asp-add-nonce` tag helper in scripts
+### Install the NetEscapades.AspNetCore.SecurityHeaders.TagHelpers nuget package
+
+Install this additional package to use the `asp-add-nonce` tag helper
 
 ```
 PM> Install-Package NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
@@ -32,9 +86,10 @@ Or using the `dotnet` CLI
 dotnet package add Install-Package NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
 ```
 
-## Add the tag helper to `_ViewImports.cshtml`
 
-To use the `asp-add-nonce` tag helper add the below to the _ViewImports.cshtml (this is located in the root Views and/or Pages folders. If you use MVC and Razor pages ensure you add to both)
+### Add the tag helper to `_ViewImports.cshtml`
+
+To use the `asp-add-nonce` tag helper, add the below to the _ViewImports.cshtml (this is located in the `Views/Shared` and/or root `Pages` folders. If you use MVC and Razor pages ensure you add to both)
 
 ```csharp
 
@@ -42,7 +97,8 @@ To use the `asp-add-nonce` tag helper add the below to the _ViewImports.cshtml (
 
 ```
 
-## Create a class to define the security headers
+
+### Create a class to define the security headers
 
 Add a class in a suitable location that creates a new HeaderPolicyCollection for example as defined below:
 
@@ -116,7 +172,8 @@ public static class SecureHeadersDefinitions
 
 The above allows scripts from `wwww.googletagmanager.com` which is only necessary if the site is using google analytics.
 
-## Add the security header definitions to the startup class middleware
+
+### Add the security header definitions to the startup class middleware
 
 In the `Configure` method add the following at the start of the pipeline after the exception page condition:
 
@@ -127,7 +184,8 @@ app.UseSecurityHeaders(
 
 ```
 
-## Add the nonce to any scripts
+
+### Add the nonce to any scripts
 
 The `AddScriptsSrc` `UnsafeInline().WithNonce()` method ensures that scripts will only be run if they have the correct nonce value. To set this add the nonce to **all** script elements e.g.
 
