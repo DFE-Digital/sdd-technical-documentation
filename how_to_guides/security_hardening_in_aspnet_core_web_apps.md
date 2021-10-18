@@ -1,4 +1,4 @@
-# How to increase security in asp.net core web applications
+# How to improve security in asp.net core web applications
 
 This guide shows a base approach to increasing security within an asp.net core web application by resolving issues raised in the IT Health Check process.
 
