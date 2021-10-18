@@ -124,4 +124,4 @@ The `AddScriptsSrc` `UnsafeInline().WithNonce()` method ensures that scripts wil
 </script>
 ```
 
-Note that inline styles will cause an error because of the CSP definition so in the example google analytics snippet aboce, the inline style has been replaced with a css class (`not-visible`) defined in an external css file e.g. `Site.css`
+Note that inline styles will cause an error because of the CSP definition, so in the example google analytics snippet above, the inline style has been replaced with a css class (`not-visible`) defined in an external css file e.g. `Site.css`
