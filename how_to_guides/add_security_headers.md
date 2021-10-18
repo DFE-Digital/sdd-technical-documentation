@@ -18,6 +18,30 @@ dotnet package add Install-Package NetEscapades.AspNetCore.SecurityHeaders
 
 Further information can be found at https://github.com/andrewlock/NetEscapades.AspNetCore.SecurityHeaders
 
+## Install the NetEscapades.AspNetCore.SecurityHeaders.TagHelpers nuget package
+
+Install this additional package to use the `asp-add-nonce` tag helper in scripts
+
+```
+PM> Install-Package NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
+```
+
+Or using the `dotnet` CLI
+
+```bash
+dotnet package add Install-Package NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
+```
+
+## Add the tag helper to `_ViewImports.cshtml`
+
+To use the `asp-add-nonce` tag helper add the below to the _ViewImports.cshtml (this is located in the root Views and/or Pages folders. If you use MVC and Razor pages ensure you add to both)
+
+```csharp
+
+@addTagHelper *, NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
+
+```
+
 ## Create a class to define the security headers
 
 Add a class in a suitable location that creates a new HeaderPolicyCollection for example as defined below:
@@ -111,14 +135,14 @@ The `AddScriptsSrc` `UnsafeInline().WithNonce()` method ensures that scripts wil
 <body class="govuk-template__body ">
 <environment include="production">
      <!-- Google Tag Manager (noscript) -->
-     <noscript nonce="@nonce">
+     <noscript asp-add-nonce>
         <iframe src=https://www.googletagmanager.com/ns.html?id=XXXXX
                 class="not-visible" height="0" width="0">
         </iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 </environment>
-<script nonce="@nonce">
+<script asp-add-nonce>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 </script>
 ```
