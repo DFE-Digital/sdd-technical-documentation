@@ -94,7 +94,7 @@ This [guide](https://docs.sentry.io/product/integrations/notification-incidents/
 
 Go to the alerts Slack channel created previously, click the title and in the window that appears, browse to the Integrations tab. Click 'Add apps' and add the Sentry app to the channel - you should see a message in the channel that Sentry has joined.
 
-![Image showing Slack user interface](./images/add-sentry-to-channel.png "Adding Sentry to alerting channel")
+<img alt="Image showing Slack user interface" src="./images/add-sentry-to-channel.png" width=50% height=50%>
 
 At this point we recommend [linking Team notifications](https://docs.sentry.io/product/integrations/notification-incidents/slack/#team-notifications) by sending the command `/sentry link team` and linking the Sentry team to the Slack channel.
 
