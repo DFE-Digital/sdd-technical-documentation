@@ -16,10 +16,10 @@ The [logging guide](../development_guidance/logging.md) details steps for enabli
 
 ## 1. Gaining access to your stack(s)
 
-Access is granted via the #digital-tools-support Slack channel in the DfE workspace. 
+Access is granted via the `#digital-tools-support` Slack channel in the DfE workspace. 
 
 * If you are in a digital service delivery team (e.g. Make A Change, Apply to Become, Concern Casework) then request access to the stack for your team AND the stack for the Academies API.
-* If you are in the Service Support team request access to the Academies API and any digital services which are supported by the Service Support team (none at the time of writing, A2B External is planned for soon).
+* If you are in the Service Support team then request access to the Academies API and any digital services which are supported by the Service Support team (none at the time of writing, A2B External is planned for soon).
 
 ## 2. Setting up on Logit
 
@@ -61,7 +61,7 @@ Value: `syslog-tls://ENDPOINT:PORT`
 
 The values are copied from the Logit LogStash stack configuration page. PORT is the port for the protocol where type is `Syslog-SSL`, ENDPOINT is the LogStash endpoint for your application's stack.
 
-We bind the GitHub secrect to our `tf apply` commands as appropriate ([example](https://github.com/DFE-Digital/academy-transfers-api/blob/f947ed9aea6936cdc02f174fdcdb3af20bc80901/.github/workflows/tf-apply.yml#L78)).
+We bind the GitHub secret to our `tf apply` commands as appropriate ([example](https://github.com/DFE-Digital/academy-transfers-api/blob/f947ed9aea6936cdc02f174fdcdb3af20bc80901/.github/workflows/tf-apply.yml#L78)).
 
 ### c) Terraform - user provided service
 
