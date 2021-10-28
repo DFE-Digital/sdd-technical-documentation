@@ -71,7 +71,7 @@ The last step is to create the user provided service and [bind it to the applica
 resource cloudfoundry_app worker_app {
 
     // add this
-	service_binding {
+    service_binding {
 		service_instance = cloudfoundry_user_provided_service.logit.id
 	}
 }
